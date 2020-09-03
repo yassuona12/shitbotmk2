@@ -1795,7 +1795,7 @@ specifiers:
   fs: ^0.0.2
   jimp: ^0.9.4
   lodash: ^4.17.15
-  moment: ^2.24.0
+  moment: ^2.27.0
   os: ^0.1.1
   os-utils: ^0.0.14
   quick.db: ^6.3.2
