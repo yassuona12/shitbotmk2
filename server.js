@@ -87,7 +87,7 @@ bot.on("messageDelete", message => {
 
 //members count
 bot.on("guildMemberAdd", member => {
-  let universCafe = bot.guilds.get("677165505999667269");
+  let universCafe = bot.guilds.get("661777660229189663");
   let memberCount = universCafe.memberCount;
   let memberCountChannel = universCafe.channels.get("679430564578590720");
   memberCountChannel
