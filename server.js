@@ -89,60 +89,23 @@ bot.on("messageDelete", message => {
 bot.on("guildMemberAdd", member => {
   let universCafe = bot.guilds.get("661777660229189663");
   let memberCount = universCafe.memberCount;
-  let memberCountChannel = universCafe.channels.get("679430564578590720");
+  let memberCountChannel = universCafe.channels.get("432533456807919639");
   memberCountChannel
-    .setName(`Members : ` + memberCount)
+    .setName(`Users count : `  + memberCount)
     .then(result => console.log(result))
     .catch(error => console.log(error));
 });
 
 bot.on("guildMemberRemove", member => {
-  let universCafe = bot.guilds.get("677165505999667269");
+  let universCafe = bot.guilds.get("661777660229189663");
   let memberCount = universCafe.memberCount;
-  let memberCountChannel = universCafe.channels.get("679430564578590720");
+  let memberCountChannel = universCafe.channels.get("432533456807919639");
   memberCountChannel
-    .setName(`Members : ` + memberCount)
+    .setName(`Users count : ` + memberCount)
     .then(result => console.log(result))
     .catch(error => console.log(error));
 });
 
 
-//welcomer need few corrections
-bot.on("guildMemberAdd", async member => {
-  let wChan = db.fetch(`${member.guild.id}`);
-
-  if (wChan == "678919804886712331") return;
-
-  if (!wChan) return;
-
-  let font = await jimp.loadFont(jimp.FONT_SANS_32_BLACK); 
-  let font64 = await jimp.loadFont(jimp.FONT_SANS_64_WHITE); 
-  let bfont64 = await jimp.loadFont(jimp.FONT_SANS_64_BLACK);
-  let mask = await jimp.read("https://i.imgur.com/552kzaW.png");
-  let welcome = await jimp.read(
-    "http://rovettidesign.com/wp-content/uploads/2011/07/clouds2.jpg"
-  ); 
-
-  jimp.read(member.user.displayAvatarURL).then(avatar => {
-    avatar.resize(200, 200);
-    mask.resize(200, 200);
-    avatar.mask(mask);
-    welcome.resize(1000, 300);
-
-    welcome.print(font64, 265, 55, `Welcome ${member.user.username}`); 
-    welcome.print(bfont64, 265, 125, `To ${member.guild.name}`);
-    welcome.print(
-      font64,
-      265,
-      195,
-      `There are now ${member.guild.memberCount} users`
-    );
-    welcome.composite(avatar, 40, 55).write("Welcome2.png"); 
-    try {
-      member.guild.channels.id("678919804886712331").send(`welcome <@${member.author.id}>`, { files: ["Welcome2.png"] });
-    } catch (e) {
-    }
-  });
-});
 
 bot.login(process.env.TOKEN);
