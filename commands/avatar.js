@@ -14,7 +14,7 @@ exports.run = (client, message, args) => {
       const embed = new Discord.RichEmbed()
       .setColor(0xFFFF00)
       .setTitle(`Avatar for ${message.author.username}:`)
-      .setImage(message.author.avatarURL)
+      .setImage(message.User.avatarURL)
       .setTimestamp()
       .setFooter(`univers Cafe`, message.guild.iconURL);
       message.channel.send({embed});
