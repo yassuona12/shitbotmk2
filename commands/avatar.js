@@ -5,18 +5,18 @@ exports.run = (client, message, args) => {
     if (message.mentions.users.size > 0) {
       const embed = new Discord.RichEmbed()
         .setColor(0xFFFF00)
-        .setTitle(`Avatar for ${message.author.username} :`)
+        .setTitle(`Avatar for ${message.mentions.users.tag} :`)
         .setImage(message.mentions.users.first().avatarURL)
         .setTimestamp()
-        .setFooter(`Univers Cafe`, message.guild.iconURL);
+        .setFooter(`JAPANISME`, message.guild.iconURL);
         message.channel.send({embed : embed}); 
     } else {
       const embed = new Discord.RichEmbed()
       .setColor(0xFFFF00)
-      .setTitle(`Avatar for ${message.author.username}:`)
+      .setTitle(`Avatar for ${message.mentions.first}:`)
       .setImage(message.User.avatarURL)
       .setTimestamp()
-      .setFooter(`univers Cafe`, message.guild.iconURL);
+      .setFooter(`JAPANISME`, message.guild.iconURL);
       message.channel.send({embed});
     }
 }
