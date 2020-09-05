@@ -28,8 +28,9 @@ fs.readdir("./commands/", (err, files) => {
 
 //thing u should don't touched
 bot.on("ready", async () => {
+  let memember = bot.guilds.get("661777660229189663").memberCount
   console.log("wow");
-  bot.user.setActivity("u!help | u!report @user", { type: "WATCHING"});
+  bot.user.setActivity(`${memember}`, { type: "WATCHING"});
 });
 
 
