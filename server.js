@@ -73,9 +73,8 @@ bot.on("message", async message => {
 
 //logging stuff *not completed yeet
 bot.on("messageDelete", message => {
-  const deleted = new Discord.RichEmbed()
-    .setTitle(`${message.author.username}
-    .setAuthor(message.author.username, message.author.avatarURL)
+  const deleted = new Discord.RichEmbed
+    .setAuthor(
     .addField("message", message.content)
     .addField("channel", message.channel)
     .setTimestamp()
