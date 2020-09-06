@@ -82,11 +82,11 @@ bot.on("messageDelete", async (message) => {
       && (entry.extra.count >= 1)) {
     user = entry.executor.username
   } else { 
-    user = message.author.username
+    user = message.author
   }
   const deleted = new Discord.RichEmbed()
     .setAuthor(message.author.tag, message.author.avatarURL)
-    .addField(`${user}, ${message.content}`)
+    .setDescription('**FROM**'`\n${user}, ${message.content}`)
     .setTimestamp()
     .setFooter("log", message.guild.iconURL);
   let logchan = message.guild.channels.find( channel => channel.name ==="log");
