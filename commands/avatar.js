@@ -5,18 +5,18 @@ exports.run = (client, message, args) => {
     if (message.mentions.users.size > 0) {
       const embed = new Discord.RichEmbed()
         .setColor(0xFFFF00)
-        .setTitle(`Avatar for ${message.mentions.users.tag} :`)
+        .setTitle(`Avatar for ${message.author.username} :`)
         .setImage(message.mentions.users.first().avatarURL)
         .setTimestamp()
-        .setFooter(`JAPANISME`, message.guild.iconURL);
+        .setFooter(`Japanisme`, message.guild.iconURL);
         message.channel.send({embed : embed}); 
     } else {
       const embed = new Discord.RichEmbed()
       .setColor(0xFFFF00)
-      .setTitle(`Avatar for ${message.mentions.first}:`)
-      .setImage(message.User.avatarURL)
+      .setTitle(`Avatar for ${message.author.username}:`)
+      .setImage(message.author.avatarURL)
       .setTimestamp()
-      .setFooter(`JAPANISME`, message.guild.iconURL);
+      .setFooter(`Japanisme`, message.guild.iconURL);
       message.channel.send({embed});
     }
 }
