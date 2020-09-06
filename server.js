@@ -73,13 +73,11 @@ bot.on("message", async message => {
 
 //logging stuff *not completed yeet
 bot.on("messageDelete", message => {
-  const deleted = new Discord.RichEmbed
-    .setAuthor(
-    .addField("message", message.content)
-    .addField("channel", message.channel)
+  const deleted = new Discord.RichEmbed()
+    .setAuthor(message.author.tag, message.author.avatarURL)
+    .addField(`Mesaage sent by ${message.author.username.tag} deleted in <#${message.channel.id}>`, message.content)
     .setTimestamp()
     .setFooter("log", message.guild.iconURL);
-
   let logchan = message.guild.channels.find( channel => channel.name ==="log");
   if (!logchan) return;
   logchan.send(deleted);
