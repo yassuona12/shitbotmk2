@@ -86,7 +86,7 @@ bot.on("messageDelete", async (message) => {
   }
   const deleted = new Discord.RichEmbed()
     .setAuthor(message.author.tag, message.author.avatarURL)
-    .addField(user, message.content)
+    .addField(`${user}, ${message.content}`)
     .setTimestamp()
     .setFooter("log", message.guild.iconURL);
   let logchan = message.guild.channels.find( channel => channel.name ==="log");
