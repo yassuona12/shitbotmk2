@@ -87,7 +87,7 @@ bot.on("messageDelete", async (message) => {
   const deleted = new Discord.RichEmbed()
     .setColor('#0099ff')
     .setAuthor(message.author.tag, message.author.avatarURL)
-    .setDescription(`**__MESSAGE__: ${message.content}**\nHas Been Deleted\n**__BY__:** ${user}\n**__FROM__:** ${message.channel} `)
+    .setDescription(`**Message Send by ${user} in Channel ${message.channel} Has been Deleted\n${message.content}**`)
     .setTimestamp()
     .setFooter("log", message.guild.iconURL);
   let logchan = message.guild.channels.find( channel => channel.name ==="log");
