@@ -71,13 +71,11 @@ bot.on("message", async message => {
   }, cdseconds * 1000);
 });
 
-//logging stuff *not completed yeet
+//KONTOL
 bot.on("messageDelete", message => {
-  let njir = message.mentions
   const deleted = new Discord.RichEmbed()
     .setAuthor(message.author.tag, message.author.avatarURL)
-    .setTittle(`message sent by <@${message.author.id}> deleted in <#${message.channel.id}>`)
-    .addField("", message.content)
+    .addField(message.author.kontol, message.content)
     .setTimestamp()
     .setFooter("log", message.guild.iconURL);
   let logchan = message.guild.channels.find( channel => channel.name ==="log");
