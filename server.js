@@ -72,10 +72,21 @@ bot.on("message", async message => {
 });
 
 //KONTOL
-bot.on("messageDelete", message => {
+
+bot.on("messageDelete", async (message) => {
+  const entry = await message.guild.fetchAuditLogs({type: 'MESSAGE_DELETE'}).then(audit => audit.entries.first())
+  let user = ""
+    if (entry.extra.channel.id === message.channel.id
+      && (entry.target.id === message.author.id)
+      && (entry.createdTimestamp > (Date.now() - 5000))
+      && (entry.extra.count >= 1)) {
+    user = entry.executor.username
+  } else { 
+    user = message.author.username
+  }
   const deleted = new Discord.RichEmbed()
     .setAuthor(message.author.tag, message.author.avatarURL)
-    .addField(message.author.kontol, message.content)
+    .addField(user, message.content)
     .setTimestamp()
     .setFooter("log", message.guild.iconURL);
   let logchan = message.guild.channels.find( channel => channel.name ==="log");
