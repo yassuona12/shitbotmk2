@@ -81,7 +81,7 @@ bot.on("messageDelete", message => {
     .setTimestamp()
     .setFooter("log", message.guild.iconURL);
 
-  let logchan = message.guild.channels.find(channel => channel.name === "log");
+  let logchan = message.guild.channels.find( channel => channel.name ==="log");
   if (!logchan) return;
   logchan.send(deleted);
 });
