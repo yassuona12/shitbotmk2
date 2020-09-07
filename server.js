@@ -45,11 +45,12 @@ bot.on("message", async message => {
       prefixes: botconfig.prefix
     };
   }
-
+  
 
   //command prefix listener
   let prefix = prefixes[message.guild.id].prefixes;
   if (!message.content.startsWith(prefix)) return;
+
 
   if (cooldown.has(message.author.id)) {
     message.delete();
@@ -66,12 +67,18 @@ bot.on("message", async message => {
   let commandfile = bot.commands.get(cmd.slice(prefix.length));
   if (commandfile) commandfile.run(bot, message, args);
 
+try {
+  commandfile.run(bot, message, args)
+} catch (err) {
+} finally {
+  console.log(`${message.author.tag} menggunakan command ${prefix}${cmd}`)
+}
+  
   setTimeout(() => {
     cooldown.delete(message.author.id);
   }, cdseconds * 1000);
 });
-
-//KONTOL
+//message log
 
 bot.on("messageDelete", async (message) => {
   const entry = await message.guild.fetchAuditLogs({type: 'MESSAGE_DELETE'}).then(audit => audit.entries.first())
@@ -87,11 +94,11 @@ bot.on("messageDelete", async (message) => {
   const deleted = new Discord.RichEmbed()
     .setColor('#0099ff')
     .setAuthor(message.author.tag, message.author.avatarURL)
-    .setDescription(`**Message Send by ${user} in Channel ${message.channel} Has been Deleted\n❱ ${message.content}**`)
+    .setDescription(`**Message Send by ${user} in Channel ${message.channel} Has been Deleted**\n❱ ${message.content}`)
     .setTimestamp()
     .setFooter("log", message.guild.iconURL);
   let logchan = message.guild.channels.find( channel => channel.name ==="log");
-  if (!logchan) return;
+  if (!logchan) return; 
   logchan.send(deleted);
 });
 
