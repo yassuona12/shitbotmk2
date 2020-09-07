@@ -46,11 +46,18 @@ bot.on("message", async message => {
     };
   }
   
+let prefix = prefixes[message.guild.id].prefixes;
+  
+const prefixMention = new RegExp(`^<@!?${bot.user.id}>`);
+  
+  const embed = new Discord.RichEmbed()
+    .setColor("PURPLE")
+    .setDescription(`**Hai, prefix ku \`${prefix}\`**`)
+  if(message.content.match(prefixMention)) 
+  return message.channel.send(embed)
 
   //command prefix listener
-  let prefix = prefixes[message.guild.id].prefixes;
   if (!message.content.startsWith(prefix)) return;
-
 
   if (cooldown.has(message.author.id)) {
     message.delete();
