@@ -26,11 +26,11 @@ fs.readdir("./commands", (err, files) => {
     });
 });
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~START CONSOLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
-bot.on("ready", async () => {
+bot.on("ready", async (message) => {
 console.log(`Bots is ready and working in ${bot.guilds.size} servers with ${bot.users.size} users!`);
 
 bot.user.setStatus('Online')
-let mememmber = bot.guilds.get("661777660229189663").memberCount
+ let mememmber = bot.guilds.get("661777660229189663").memberCount
 bot.user.setActivity(`with ${mememmber} Members | j!help`);
     
 try {
