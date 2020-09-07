@@ -11,7 +11,7 @@ for new feature please tag <@454680245937635339> ðŸ˜˜`)
     .addField("General", "``help 8ball kiss hug userinfo ping coinflip hello avatar say serverinfo report``")
     .addField("Moderator","``tempmute kick clear unban ban mute``")
     .setTimestamp()
-    .setFooter("Univers Cafe", message.guild.iconURL);
+    .setFooter("Japanisme", message.guild.iconURL);
 
   message.channel.send(helpEmbed);
 }
