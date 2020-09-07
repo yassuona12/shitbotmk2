@@ -30,8 +30,8 @@ bot.on("ready", async () => {
 console.log(`Bots is ready and working in ${bot.guilds.size} servers with ${bot.users.size} users!`);
 
 bot.user.setStatus('Online')
-
-bot.user.setActivity(`in ${bot.guilds.size} Servers | tghelp`);
+let mememmber = bot.guilds.get("661777660229189663").memberCount
+bot.user.setActivity(`with ${mememmber} Members | j!help`);
     
 try {
     let link = await bot.generateInvite(["ADMINISTRATOR"]);
