@@ -11,19 +11,22 @@ const bot = new Discord.Client({ disableEveryone: true });
 //command loaded
 bot.commands = new Discord.Collection();
 
-fs.readdir("./commands/", (err, files) => {
-  if (err) console.log(err);
-  let jsfile = files.filter(f => f.split(".").pop() === "js");
-  if (jsfile.length <= 0) {
-    console.log("Couldn't find commands.");
-    return;
-  }
+fs.readdir("./commands", (err, files) => {
+    if(err) console.error(err);
 
-  jsfile.forEach((f, i) => {
-    let props = require(`./commands/${f}`);
-    console.log(`${f} loaded!`);
-    bot.commands.set(props.help.name, props);
-  });
+    let jsfiles = files.filter(f => f.split(".").pop() === "js");
+    if(jsfiles.length <= 0) {
+        console.log("No commands found to load!");
+        return;
+    }
+
+    console.log(`Loading ${jsfiles.length} commands!`);
+
+    jsfiles.forEach((f, i) => {
+        let props = require(`./commands/${f}`);
+        console.log(`${i + 1}: ${f} loaded!`);
+        bot.commands.set(props.help.name, props);
+    });
 });
 
 //motherfucker don't touch this again
@@ -34,11 +37,18 @@ bot.on("ready", async () => {
 });
 
 
-bot.on("message", async message => {
-  if (message.author.bot) return;
-  if (message.channel.type == "dm") return;
+  
 
-  //prefix reader
+
+bot.on("message", async message => {
+    if(message.author.bot) return;
+    if(message.channel.type === "dm") return;  
+
+    let messageArray = message.content.split(" ");
+    let command = messageArray[0];
+    let args = messageArray.slice(1);
+    
+    //prefix reader
   let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
   if (!prefixes[message.guild.id]) {
     prefixes[message.guild.id] = {
@@ -46,8 +56,25 @@ bot.on("message", async message => {
     };
   }
   
-let prefix = prefixes[message.guild.id].prefixes;
+  let prefix = prefixes[message.guild.id].prefixes;
   
+
+    if(!command.startsWith(prefix)) return;
+
+    let cmd = bot.commands.get(command.slice(prefix.length));
+    if(cmd) cmd.run(bot, message, args);
+  
+try {
+  cmd.run(bot, message, args)
+} catch (err) {
+} finally {
+  console.log(`${message.author.tag} menggunakan command ${prefix}${command}`)
+}
+  
+  setTimeout(() => {
+    cooldown.delete(message.author.id);
+  }, cdseconds * 1000);
+
 const prefixMention = new RegExp(`^<@!?${bot.user.id}>`);
   
   const embed = new Discord.RichEmbed()
@@ -66,27 +93,8 @@ const prefixMention = new RegExp(`^<@!?${bot.user.id}>`);
   if (!message.member.hasPermission("ADMINISTRATOR")) {
     cooldown.add(message.author.id);
   }
-
-  let messageArray = message.content.split(" ");
-  let cmd = messageArray[0];
-  let args = messageArray.slice(1);
-
-  let commandfile = bot.commands.get(cmd.slice(prefix.length));
-  if (commandfile) commandfile.run(bot, message, args);
-
-try {
-  commandfile.run(bot, message, args)
-} catch (err) {
-} finally {
-  console.log(`${message.author.tag} menggunakan command ${prefix}${cmd}`)
-}
-  
-  setTimeout(() => {
-    cooldown.delete(message.author.id);
-  }, cdseconds * 1000);
 });
 //message log
-
 bot.on("messageDelete", async (message) => {
   const entry = await message.guild.fetchAuditLogs({type: 'MESSAGE_DELETE'}).then(audit => audit.entries.first())
   let user = ""
