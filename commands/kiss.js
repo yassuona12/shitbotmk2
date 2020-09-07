@@ -11,7 +11,7 @@ exports.run = async (client, message, args, tools) => {
     .setTitle(`OwO, ${message.author.username} kissed ${message.mentions.users.first().username}`)
     .setImage(body.url) 
     .setTimestamp()
-    .setFooter(`Univers Cafe`, message.guild.iconURL);
+    .setFooter(`Japanisme`, message.guild.iconURL);
     message.channel.send({embed})
 };
 
