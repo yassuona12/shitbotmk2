@@ -19,16 +19,8 @@ bot.on("ready", async () => {
 });
 
 bot.on('message', async (message) => {
-
-
-let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
-  if (!prefixes[message.guild.id]) {
-    prefixes[message.guild.id] = {
-      prefixes: botconfig.prefix
-    };
-  }
   
-let prefix = prefixes[message.guild.id].prefixes;
+let prefix = "j!";
   
 const prefixMention = new RegExp(`^<@!?${bot.user.id}>`);
   
@@ -40,23 +32,25 @@ const prefixMention = new RegExp(`^<@!?${bot.user.id}>`);
 
   if (!message.content.startsWith(prefix)) return;
 
+
+  if(!message.content.startsWith(prefix) || message.author.bot) return null;
+  let msg = message.content.toLowerCase();
+    let args = message.content.slice(prefix.length).trim().split(" ");
+      let cmd = args.shift().toLowerCase();
+        let command = cmd;
+
+let commandfile;
+try {
+  commandfile = require(`./commands/${cmd}.js`)
+} catch (err) {
+  return null
+}
+  if (commandfile) commandfile.run(bot, message, args);
+
   if (cooldown.has(message.author.id)) {
     message.delete();
     return message.reply("You have to wait 3 seconds between commands.");
   }
-  if (!message.member.hasPermission("ADMINISTRATOR")) {
-    cooldown.add(message.author.id);
-  }
-
-  let messageArray = message.content.split(" ");
-  if(!message.content.startsWith(prefix) || message.author.bot) return null;
-  let msg = message.content.toLowerCase();
-  let cmd = messageArray[0];
-  let args = messageArray.slice(1);
-
-  let commandfile = bot.commands.get(cmd.slice(prefix.length));
-  if (commandfile) commandfile.run(bot, message, args);
-
 try {
   commandfile.run(bot, message, args)
 } catch (err) {
