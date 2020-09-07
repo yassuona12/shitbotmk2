@@ -16,7 +16,7 @@
     "moment": "^2.27.0",
     "superagent": "^6.1.0",
     "jimp": "^0.9.4",
-    "quick.db": "^6.3.2",
+    "quick.db": "^7.1.1",
     "os": "^0.1.1",
     "os-utils": "^0.0.14",
     "fs": "^0.0.2",
@@ -28,5 +28,8 @@
     "discord.js-commando": "^0.10.0",
     "discord.js-lavalink": "^3.0.1",
     "discord.js-musicbot-addon": "^13.9.1"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
