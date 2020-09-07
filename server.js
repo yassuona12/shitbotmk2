@@ -25,21 +25,14 @@ fs.readdir("./commands", (err, files) => {
         bot.commands.set(props.help.name, props);
     });
 });
-
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~START CONSOLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
 bot.on("ready", async () => {
 console.log(`Bots is ready and working in ${bot.guilds.size} servers with ${bot.users.size} users!`);
 
- 
-/*setInterval(() => {
-        dbl.postStats(bot.guilds.size);
-    }, 1800000); */
-    
 bot.user.setStatus('Online')
 
-bot.user.setActivity(`in ${bot.guilds.size} Servers | !help`);
+bot.user.setActivity(`in ${bot.guilds.size} Servers | tghelp`);
     
-    
-
 try {
     let link = await bot.generateInvite(["ADMINISTRATOR"]);
     console.log(link);
@@ -47,7 +40,7 @@ try {
         console.log(e.stack);
         }
 });
-     
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~START COMMANDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
 bot.on("message", async message => {
     if(message.author.bot) return;
     if(message.channel.type === "dm") return;  
@@ -62,5 +55,49 @@ bot.on("message", async message => {
     if(cmd) cmd.run(bot, message, args);
     
 });
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LOGS COMMANDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
+//MESSAGE DELETE
+bot.on("messageDelete", async (message) => {
+  const entry = await message.guild.fetchAuditLogs({type: 'MESSAGE_DELETE'}).then(audit => audit.entries.first())
+  let user = ""
+    if (entry.extra.channel.id === message.channel.id
+      && (entry.target.id === message.author.id)
+      && (entry.createdTimestamp > (Date.now() - 5000))
+      && (entry.extra.count >= 1)) {
+    user = entry.executor.username
+  } else { 
+    user = message.author
+  }
+  const deleted = new Discord.RichEmbed()
+    .setColor('#0099ff')
+    .setAuthor(message.author.tag, message.author.avatarURL)
+    .setDescription(`**Message Send by ${user} in Channel ${message.channel} Has been Deleted**\n❱ ${message.content}`)
+    .setTimestamp()
+    .setFooter("log", message.guild.iconURL);
+  let logchan = message.guild.channels.find( channel => channel.name ==="log");
+  if (!logchan) return; 
+  logchan.send(deleted);
+});
+//WELCOMER & GOODBYE
+bot.on("guildMemberAdd", member => {
+  let universCafe = bot.guilds.get("661777660229189663");
+  let memberCount = universCafe.memberCount;
+  let memberCountChannel = universCafe.channels.get("432533456807919639");
+  memberCountChannel
+    .setName(`Users count : `  + memberCount)
+    .then(result => console.log(result))
+    .catch(error => console.log(error));
+});
+
+bot.on("guildMemberRemove", member => {
+  let universCafe = bot.guilds.get("661777660229189663");
+  let memberCount = universCafe.memberCount;
+  let memberCountChannel = universCafe.channels.get("432533456807919639");
+  memberCountChannel
+    .setName(`Users count : ` + memberCount)
+    .then(result => console.log(result))
+    .catch(error => console.log(error));
+});
+
 
 bot.login(process.env.TOKEN);
