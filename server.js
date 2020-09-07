@@ -65,7 +65,7 @@ bot.on("message", async message => {
   cmd.run(bot, message, args)
 } catch (err) {
 } finally {
-  console.log(`${message.author.tag} menggunakan command ${botSettings.prefix}${command}`)
+  console.log(`${message.author.tag} menggunakan command ${command}`)
 }
     
 });
