@@ -10,22 +10,14 @@ const bot = new Discord.Client({ disableEveryone: true });
 
 //command loaded
 bot.commands = new Discord.Collection();
-
-fs.readdir("./commands/", (err, files) => {
-  if (err) console.log(err);
-  let jsfile = files.filter(f => f.split(".").pop() === "js");
-  if (jsfile.length <= 0) {
-    console.log("Couldn't find commands.");
-    return;
-  }
-
-  jsfile.forEach((f, i) => {
-    let props = require(`./commands/${f}`);
-    console.log(`${f} loaded!`);
-    bot.commands.set(props.help.name, props);
-  });
-});
-
+bot.on('message', async (message) => {
+let commandFiles;
+try {
+  commandFiles = require(`./commands/${cmd}.js`)
+} catch (err) {
+  return message.reply("Command tidak tersedia/dalam tahap pengembangan. Silahkan ketik tghelp")
+}
+})
 //motherfucker don't touch this again
 bot.on("ready", async () => {
   let memember = bot.guilds.get("661777660229189663").memberCount
