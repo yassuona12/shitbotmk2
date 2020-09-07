@@ -14,6 +14,12 @@ module.exports.run = async(bot, message, args) => {
 
   message.channel.send(helpEmbed);
 }
+exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: ['h'],
+    permLevel: 0
+  };
 
 module.exports.help = {
   name : "help"
