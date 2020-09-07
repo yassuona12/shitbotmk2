@@ -30,7 +30,7 @@ fs.readdir("./commands/", (err, files) => {
 bot.on("ready", async () => {
   let memember = bot.guilds.get("661777660229189663").memberCount
   console.log("wow");
-  bot.user.setActivity(`${memember} Members`, { type: "WATCHING"});
+  bot.user.setActivity(`${memember} Members | j!help`, { type: "WATCHING"});
 });
 
 

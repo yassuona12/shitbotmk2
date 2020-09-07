@@ -30,7 +30,8 @@ exports.run = async (bot, message, args) => {
     	'What difference does it makes?',
     	'Not my problem.',
         'Ask someone else.',
-      'I dont think so'
+      'I dont think so' , 
+      'soon'
     ];
 
     let result = Math.floor((Math.random() * replies.length));

@@ -6,18 +6,18 @@ module.exports.run = async(bot, message, args) => {
   let reason = args.join(" ").slice(22);
 
   let reportEmbed = new Discord.RichEmbed()
-    .setAuthor(`Member Reported`)
+    .setAuthor(`Member di cepuin`)
     .setColor("#E5DA2A")
     .setThumbnail(message.mentions.users.first().avatarURL)
-    .addField("Reported User", `${rUser}`)
-    .addField("Reported By", `${message.author}`)
-    .addField("Channel", message.channel)
-    .addField("Reason", reason)
+    .addField("yang di cepuin", `${rUser}`)
+    .addField("cepu", `${message.author}`)
+    .addField("Channel TKP", message.channel)
+    .addField("alesannya", reason)
     .setTimestamp()
   .setFooter("cepu moment", message.guild.iconURL);
 
   //return message.channel.send(reportEmbed); //send msg in current channel
-  let reportsChannel = message.guild.channels.find(`name`, "report") //TODO: set reports channel
+  let reportsChannel = message.guild.channels.find(`name`, "cepu") //TODO: set reports channel
   if(!reportsChannel) return message.channel.send("Couldn't find reports channel.");
 
   message.delete().catch(O_o=>{}); //delete previous message (input command)
