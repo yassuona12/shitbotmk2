@@ -10,14 +10,7 @@ const bot = new Discord.Client({ disableEveryone: true });
 
 //command loaded
 bot.commands = new Discord.Collection();
-bot.on('message', async (message) => {
-let commandFiles;
-try {
-  commandFiles = require(`./commands/${cmd}.js`)
-} catch (err) {
-  return message.reply("Command tidak tersedia/dalam tahap pengembangan. Silahkan ketik tghelp")
-}
-})
+
 //motherfucker don't touch this again
 bot.on("ready", async () => {
   let memember = bot.guilds.get("661777660229189663").memberCount
@@ -25,13 +18,10 @@ bot.on("ready", async () => {
   bot.user.setActivity(`${memember} Members | j!help`, { type: "WATCHING"});
 });
 
+bot.on('message', async (message) => {
 
-bot.on("message", async message => {
-  if (message.author.bot) return;
-  if (message.channel.type == "dm") return;
 
-  //prefix reader
-  let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
+let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
   if (!prefixes[message.guild.id]) {
     prefixes[message.guild.id] = {
       prefixes: botconfig.prefix
@@ -48,7 +38,6 @@ const prefixMention = new RegExp(`^<@!?${bot.user.id}>`);
   if(message.content.match(prefixMention)) 
   return message.channel.send(embed)
 
-  //command prefix listener
   if (!message.content.startsWith(prefix)) return;
 
   if (cooldown.has(message.author.id)) {
@@ -60,6 +49,8 @@ const prefixMention = new RegExp(`^<@!?${bot.user.id}>`);
   }
 
   let messageArray = message.content.split(" ");
+  if(!message.content.startsWith(prefix) || message.author.bot) return null;
+  let msg = message.content.toLowerCase();
   let cmd = messageArray[0];
   let args = messageArray.slice(1);
 
@@ -76,9 +67,10 @@ try {
   setTimeout(() => {
     cooldown.delete(message.author.id);
   }, cdseconds * 1000);
-});
-//message log
+  
+})
 
+//message log
 bot.on("messageDelete", async (message) => {
   const entry = await message.guild.fetchAuditLogs({type: 'MESSAGE_DELETE'}).then(audit => audit.entries.first())
   let user = ""
