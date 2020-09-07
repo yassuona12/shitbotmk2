@@ -36,10 +36,7 @@ bot.on("ready", async () => {
   bot.user.setActivity(`${memember} Members | j!help`, { type: "WATCHING"});
 });
 
-
-  
-
-
+//COMMAND CONSOLE
 bot.on("message", async message => {
     if(message.author.bot) return;
     if(message.channel.type === "dm") return;  
@@ -49,15 +46,13 @@ bot.on("message", async message => {
     let args = messageArray.slice(1);
     
     //prefix reader
-  let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
-  if (!prefixes[message.guild.id]) {
-    prefixes[message.guild.id] = {
-      prefixes: botconfig.prefix
-    };
-  }
-  
-  let prefix = prefixes[message.guild.id].prefixes;
-  
+  const pref = db.get(`prefix.${message.guild.id}`);
+  let prefix;
+   if (!pref) {
+     prefix = "j!"; //prefix default
+   } else {
+     prefix = pref;
+   }
 
     if(!command.startsWith(prefix)) return;
 
@@ -93,7 +88,11 @@ const prefixMention = new RegExp(`^<@!?${bot.user.id}>`);
   if (!message.member.hasPermission("ADMINISTRATOR")) {
     cooldown.add(message.author.id);
   }
-});
+
+
+
+
+
 //message log
 bot.on("messageDelete", async (message) => {
   const entry = await message.guild.fetchAuditLogs({type: 'MESSAGE_DELETE'}).then(audit => audit.entries.first())
@@ -137,7 +136,7 @@ bot.on("guildMemberRemove", member => {
     .then(result => console.log(result))
     .catch(error => console.log(error));
 });
-
+});
 
 
 bot.login(process.env.TOKEN);
