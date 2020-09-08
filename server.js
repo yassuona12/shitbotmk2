@@ -28,11 +28,10 @@ fs.readdir("./commands", (err, files) => {
 });
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~START CONSOLE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
 bot.on("ready", async (message) => {
-console.log(`Bots is ready and working in ${bot.guilds.size} servers with ${bot.users.size} users!`);
+console.log(`Bots is ready and working in ${bot.guilds.cache.size} servers with ${bot.users.cache.size} users!`);
 
 bot.user.setStatus('Online')
- let mememmber = bot.guilds.get("661777660229189663").memberCount
-bot.user.setActivity(`with ${mememmber} Members | j!help`);
+bot.user.setActivity(`with ${bot.users.cache.size} Members | j!help`);
     
 try {
     let link = await bot.generateInvite(["ADMINISTRATOR"]);
@@ -53,7 +52,7 @@ bot.on("message", async message => {
   
     const prefixMention = new RegExp(`^<@!?${bot.user.id}>`);
   
-      const embed = new Discord.RichEmbed()
+      const embed = new Discord.MessageEmbed()
         .setColor("PURPLE")
         .setDescription(`**Hai, prefix ku \`${prefix}\`**`)
        if(message.content.match(prefixMention)) 
@@ -83,13 +82,13 @@ bot.on("messageDelete", async (message) => {
   } else { 
     user = message.author
   }
-  const deleted = new Discord.RichEmbed()
+  const deleted = new Discord.MessageEmbed()
     .setColor('#0099ff')
     .setAuthor(message.author.tag, message.author.avatarURL)
     .setDescription(`**Message Send by ${user} in Channel ${message.channel} Has been Deleted**\n❱ ${message.content}`)
     .setTimestamp()
     .setFooter("log", message.guild.iconURL);
-  let logchan = message.guild.channels.find( channel => channel.name ==="log");
+  let logchan = message.guild.channels.cache.find(ch => ch.name === "log");
   if (!logchan) return; 
   logchan.send(deleted);
 });
@@ -97,9 +96,9 @@ bot.on("messageDelete", async (message) => {
 
 //WELCOMER & GOODBYE
 bot.on("guildMemberAdd", member => {
-   let universCafe = bot.guilds.get("661777660229189663");
+   let universCafe = bot.guilds.cache.get("661777660229189663");
    let memberCount = universCafe.memberCount;
-   let memberCountChannel = universCafe.channels.get("752409981730422915");
+   let memberCountChannel = universCafe.channels.cache.get("752409981730422915");
    memberCountChannel
      .setName(`Users count : `  + memberCount)
      .then(result => console.log(result))
@@ -107,9 +106,9 @@ bot.on("guildMemberAdd", member => {
  });
 
  bot.on("guildMemberRemove", member => {
-   let universCafe = bot.guilds.get("661777660229189663");
+   let universCafe = bot.guilds.cache.get("661777660229189663");
    let memberCount = universCafe.memberCount;
-   let memberCountChannel = universCafe.channels.get("752409981730422915");
+   let memberCountChannel = universCafe.channels.cache.get("752409981730422915");
    memberCountChannel
      .setName(`Users count : ` + memberCount)
      .then(result => console.log(result))
