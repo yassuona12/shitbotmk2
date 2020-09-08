@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 exports.run = async (bot, message, args) => {
   
-  if(!message.member.hasPermission('MANAGE_ROLES') || !message.member.hasPermission(["KICK_MEMBERS", "BAN_MEMBERS"]) || !message.guild.owner) return message.reply("You haven't the permission to use this command!");
-	if(!message.guild.me.hasPermission(["MANAGE_ROLES","ADMINISTRATOR"])) return message.reply("I don't have permission to manage roles!");
+  if(!message.member.hasPermission('MANAGE_ROLES') || !message.member.hasPermission(["KICK_MEMBERS", "BAN_MEMBERS"]) || !message.guild.owner) return message.reply("Kamu tidak memiliki izi untuk menggunakan perintah ini");
+	if(!message.guild.me.hasPermission(["MANAGE_ROLES","ADMINISTRATOR"])) return message.reply("Saya tidak memiliki izin yang diperlukan");
   let mentionedUser = message.mentions.users.first();
 	let toMute = message.mentions.members.first();
 	if(!toMute) return message.channel.send('Silahkan Mention Member Terlebih Dahulu');
@@ -11,7 +11,7 @@ exports.run = async (bot, message, args) => {
 	let reason = args.slice(1).join(" ");
 	if(!reason) reason = "No reason given";
   
-	let muteRole = message.guild.roles.find(r => r.name === "JPMute");
+	let muteRole = message.guild.roles.cache.find(r => r.name === "JPMute");
 	if(!muteRole) {
 		try {
 			muteRole = await message.guild.roles.create({
@@ -26,7 +26,7 @@ exports.run = async (bot, message, args) => {
 		}
 	}
   
-	message.guild.channels.cache.forEach((channel) => {
+	message.guild.channels.forEach((channel) => {
 		channel.updateOverwrite(muteRole, {
 			"SEND_MESSAGES": false,
 			"ATTACH_FILES": false,

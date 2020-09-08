@@ -9,7 +9,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "discord.js": "^11.0.5",
+    "discord.js": "^12.3.1",
     "chokidar": "^3.4.2",
     "expres": "^0.0.5",
     "express": "^4.17.1",
@@ -23,7 +23,7 @@
     "string-template": "^1.0.0",
     "lodash": "^4.17.20",
     "axios": "^0.19.2",
-    "request": "^2.87.0",
+    "request": "^2.88.2",
     "yargs-parser": "^19.0.4",
     "v11-discord.js": "^11.5.1",
     "discord.js-commando": "^0.10.0",
