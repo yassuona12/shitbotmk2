@@ -26,7 +26,7 @@ exports.run = async (bot, message, args) => {
 		}
 	}
   
-	message.guild.channels.forEach((channel) => {
+	message.guild.channels.cache.forEach((channel) => {
 		channel.updateOverwrite(muteRole, {
 			"SEND_MESSAGES": false,
 			"ATTACH_FILES": false,
@@ -36,7 +36,7 @@ exports.run = async (bot, message, args) => {
 			"STREAM": false
 		});
 	});
-	const muteConfirm = new Discord.RichEmbed()
+	const muteConfirm = new Discord.MessageEmbed()
 	.setColor('RANDOM')
 	.setDescription(`✅ **${mentionedUser.tag} has been successfully muted!\nReason: __${reason}__**`);
 	toMute.roles.add(muteRole.id).then(() => {
