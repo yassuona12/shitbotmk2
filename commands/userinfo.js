@@ -7,12 +7,10 @@ function checkDays(date) {
   return days + (days == 1 ? " day" : " days") + " ago";
 };
 exports.run = async (client, msg, args) => {
-  let user = msg.mentions.users.first();
-  let muser = msg.guild.member(msg.mentions.users.first());
-    if (!muser) muser = msg.member;
-    if(!user) user = msg.author;
-  const embed = new Discord.RichEmbed();
-  embed.addField("Username", `${user.username}#${user.discriminator}`, true)
+  let user = msg.mentions.users.first() || msg.author;
+  let muser = msg.guild.member(msg.mentions.users.first()) || msg.member;
+  const embed = new Discord.MessageEmbed();
+  embed.addField("Username", `${user.tag}`, true)
           .addField("ID", `${user.id}`, true)
           .setColor(3447003)
           .setThumbnail(user.avatarURL)

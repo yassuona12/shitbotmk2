@@ -115,7 +115,9 @@ bot.on("guildMemberAdd", member => {
      .catch(error => console.log(error));
  });
 
-bot.on('message', message => {
-  if message.
-
+bot.on('message', async (message) => {
+  if (message.content.startsWith('raven ganteng')) return message.channel.send("bener")
+  if (message.content.startsWith(`<@243728573624614912>`)) 
+    return message.channel.send(' Gausah tag-tag, najis ')
+});
 bot.login(process.env.TOKEN);

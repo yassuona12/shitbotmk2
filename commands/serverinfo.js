@@ -18,7 +18,7 @@ let servercreated = moment(message.guild.createdAt).format('ll');
         .addField("Creation Date", `❱ \`**${servercreated}\`**`, true)
         .setThumbnail(message.guild.iconURL)
         .setFooter(`**ID: ${message.guild.id}**`)
-        
+        .setTimestamp();
   
       message.channel.send(serverEmbed);
 }
