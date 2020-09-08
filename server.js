@@ -115,5 +115,7 @@ bot.on("guildMemberAdd", member => {
      .catch(error => console.log(error));
  });
 
+bot.on('message', message => {
+  if message.
 
 bot.login(process.env.TOKEN);
