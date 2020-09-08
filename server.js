@@ -93,6 +93,8 @@ bot.on("messageDelete", async (message) => {
   if (!logchan) return; 
   logchan.send(deleted);
 });
+
+
 //WELCOMER & GOODBYE
 bot.on("guildMemberAdd", member => {
    let universCafe = bot.guilds.get("661777660229189663");
