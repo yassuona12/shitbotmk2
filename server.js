@@ -94,25 +94,25 @@ bot.on("messageDelete", async (message) => {
   logchan.send(deleted);
 });
 //WELCOMER & GOODBYE
-// bot.on("guildMemberAdd", member => {
-//   let universCafe = bot.guilds.get("661777660229189663");
-//   let memberCount = universCafe.memberCount;
-//   let memberCountChannel = universCafe.channels.get("752409981730422915");
-//   memberCountChannel
-//     .setName(`Users count : `  + memberCount)
-//     .then(result => console.log(result))
-//     .catch(error => console.log(error));
-// });
+bot.on("guildMemberAdd", member => {
+   let universCafe = bot.guilds.get("661777660229189663");
+   let memberCount = universCafe.memberCount;
+   let memberCountChannel = universCafe.channels.get("752409981730422915");
+   memberCountChannel
+     .setName(`Users count : `  + memberCount)
+     .then(result => console.log(result))
+     .catch(error => console.log(error));
+ });
 
-// bot.on("guildMemberRemove", member => {
-//   let universCafe = bot.guilds.get("661777660229189663");
-//   let memberCount = universCafe.memberCount;
-//   let memberCountChannel = universCafe.channels.get("752409981730422915");
-//   memberCountChannel
-//     .setName(`Users count : ` + memberCount)
-//     .then(result => console.log(result))
-//     .catch(error => console.log(error));
-// });
+ bot.on("guildMemberRemove", member => {
+   let universCafe = bot.guilds.get("661777660229189663");
+   let memberCount = universCafe.memberCount;
+   let memberCountChannel = universCafe.channels.get("752409981730422915");
+   memberCountChannel
+     .setName(`Users count : ` + memberCount)
+     .then(result => console.log(result))
+     .catch(error => console.log(error));
+ });
 
 
 bot.login(process.env.TOKEN);
