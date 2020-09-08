@@ -1,24 +1,16 @@
 const Discord =  require('discord.js');
 
 exports.run = (client, message, args) => {
-    let avatar = message.mentions.users.size ? message.mentions.users.first().avatarURL : message.author.avatarURL;
-    if (message.mentions.users.size > 0) {
-      const embed = new Discord.RichEmbed()
+    let mentionedUser = message.mentions.users.first() || message.author;
+    const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
+      const embed = new Discord.MessageEmbed()
         .setColor(0xFFFF00)
-        .setTitle(`Avatar for ${message.author.username} :`)
-        .setImage(message.mentions.users.first().avatarURL)
+        .setTitle(`Avatar for ${mentionedUser.tag} :`)
+        .setImage(`${mentionedUser.displayAvatarURL({dynamic: true, size: 4096})}`)
         .setTimestamp()
         .setFooter(`Japanisme`, message.guild.iconURL);
-        message.channel.send({embed : embed}); 
-    } else {
-      const embed = new Discord.RichEmbed()
-      .setColor(0xFFFF00)
-      .setTitle(`Avatar for ${message.author.username}:`)
-      .setImage(message.author.avatarURL)
-      .setTimestamp()
-      .setFooter(`Japanisme`, message.guild.iconURL);
-      message.channel.send({embed});
-    }
+        message.channel.send(embed); 
+        message.delete();
 }
 
 exports.conf = {

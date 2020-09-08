@@ -37,7 +37,7 @@ exports.run = async (bot, message, args) => {
     let result = Math.floor((Math.random() * replies.length));
     let question = args.slice(0).join(" ");
 
-    let embed = new Discord.RichEmbed()
+    let embed = new Discord.MessageEmbed()
     .setTitle("8BALL")
     .setColor("#AA9900")
     .addField("Q:", question)
@@ -45,7 +45,7 @@ exports.run = async (bot, message, args) => {
     .setFooter("Japanisme", message.guild.iconURL)
     .setTimestamp();
 
-    message.channel.send({embed});
+    message.channel.send(embed);
 }
 exports.conf = {
     enabled: true,
