@@ -5,15 +5,15 @@ if (message.channel instanceof Discord.DMChannel) return;
   
   let mentionedUser = message.mentions.users.first();
   
-  let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
   if(!tomute) return message.reply('Silahkan Mention member Terlebih Dahulu');
   
   if(tomute.hasPermission("ADMINISTRATOR")) return message.reply("Member ini tidak bisa di mute");
-  let muterole = message.guild.roles.find(r => r.name === 'JPMute');
+  let muterole = message.guild.roles.cache.find(r => r.name === 'JPMute');
   
   tomute.roles.remove(muterole.id);
   
-  const unmute = new Discord.RichEmbed()
+  const unmute = new Discord.MessageEmbed()
   .setColor('#fc0000')
   .setDescription(`**${mentionedUser.tag} Has Been Unmuted!**`)
     message.delete()

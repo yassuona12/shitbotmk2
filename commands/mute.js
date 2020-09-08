@@ -21,9 +21,10 @@ exports.run = async (bot, message, args) => {
 					permissions: []
 				}
 			});
-		} catch (e) {
-			console.log(e.stack);
-		}
+		} catch (error) {
+        console.log('an error has occurred')
+        console.log('')
+      }
 	}
   
 	message.guild.channels.cache.forEach((channel) => {
