@@ -11,16 +11,15 @@ exports.run = async (client, msg, args) => {
   let muser = msg.guild.member(msg.mentions.users.first()) || msg.member;
   const roles = muser.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString()).slice(0, -1);
   const embed = new Discord.MessageEmbed()
-          .addField("Username", `${user.tag}`, true)
-          .addField("ID", `${user.id}`, true)
-          .setColor(3447003)
           .setThumbnail(user.avatarURL)
-          .setTimestamp()
+          .setColor(3447003)
+          .addField("Username", `${user.tag} - ${user.id}`)
           .addField('Status', `${muser.presence.status}`, true)
           .addField('Game', `${muser.presence.game ? user.presence.game.name : 'None'}`, true)
-          .addField('Joined Discord', `${moment(user.createdAt).toString().substr(0, 15)}\n(${moment(user.createdAt).fromNow()})`, true)
-          .addField('Joined Server', `${moment(muser.joinedAt).toString().substr(0, 15)}\n(${moment(muser.joinedAt).fromNow()})`, true)
+          .addField('Account Created', `${moment(user.createdAt).toString().substr(0, 15)}`, true)
+          .addField('Account Joined', `${moment(muser.joinedAt).toString().substr(0, 15)}`, true)
           .addField('Roles', `${roles.length < 500 ? roles.join('') : roles.length > 500 ? this.client.utils.trimArray(roles) : 'None'}`, true)
+          .setTimestamp()
           .setFooter(msg.guild.name, msg.guild.iconURL);
       msg.channel.send({embed});
 
