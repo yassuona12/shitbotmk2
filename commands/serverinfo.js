@@ -15,9 +15,9 @@ let servercreated = moment(message.guild.createdAt).format('ll');
         .addField("Total Joined", `❱ **\`${message.guild.members.cache.size}\`**`, true)
         .addField("Roles", `❱ **\`${message.guild.roles.cache.size}\`**`, true)
         .addField('Booster', `❱ **\`${message.guild.premiumSubscriptionCount || '0'}\`**`, true)
-        .addField("Creation Date", `❱ \`**${servercreated}\`**`, true)
+        .addField("Creation Date", `❱ **\`${servercreated}\`**`, true)
         .setThumbnail(message.guild.iconURL)
-        .setFooter(`**ID: ${message.guild.id}**`)
+        .setFooter(`ID: ${message.guild.id}`)
         .setTimestamp();
   
       message.channel.send(serverEmbed);
