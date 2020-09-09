@@ -21,7 +21,7 @@ let servercreated = moment(message.guild.createdAt).format('ll');
         .addField("Server Created", `❱ **\`${servercreated}\`**`, true)
         .setFooter(`❱ ${message.guild.name}`, bot.user.displayAvatarURL())
         .setTimestamp();
-      message.channel.send(serverEmbed).then (msg => msg.delete({  timeout: 10000  }));
+      message.channel.send(serverEmbed).then (msg => msg.delete({  timeout: 60000  }));
 }
 
 module.exports.help = {
