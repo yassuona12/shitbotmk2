@@ -24,8 +24,26 @@ exports.run = async (client, msg, args) => {
           .addField('Is Bot', `${user.bot.toString().toUpperCase()}`, true)
           .setFooter(`univers cafe`, msg.guild.iconURL);
       msg.channel.send({embed});
-}
 
+    const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
+    const mentionedUser = message.mentions.users.first() || message.author;
+    const roles = member.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString()).slice(0, -1);
+		const userFlags = mentionedUser.flags.toArray();
+    const date = moment(mentionedUser.createdAt).format('ll');
+    
+    const embed = new MessageEmbed()
+          .setThumbnail(mentionedUser.displayAvatarURL({ dynamic: true, size: 512 }))
+          .setColor('ff85cc')
+          .setFooter("Creator Beel")
+          .setTimestamp(message.createdTimestamp)
+          .addField('Username | Tags', `${mentionedUser.tag} | ${mentionedUser.discriminator}`)
+          .addField('ID', `${mentionedUser.id}`)
+          .addField('Badges', `${userFlags.length ? userFlags.map(flag => flags[flag]).join(', ') : 'None'}`)
+          .addField('Join Date', `${moment(member.joinedAt).format('LL LTS')}`)
+          .addField('Created At', (date))
+          .addField('Roles', `${roles.length < 500 ? roles.join(', ') : roles.length > 500 ? this.client.utils.trimArray(roles) : 'None'}`) 
+      message.channel.send(embed)
+}
 exports.conf = {
   enabled: true,
   guildOnly: false,
