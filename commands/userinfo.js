@@ -18,7 +18,7 @@ exports.run = async (client, msg, args) => {
           .addField('Account Joined', `❱ ${moment(muser.joinedAt).toString().substr(0, 15)}`, true)
           .addField('Roles', `${roles.length < 500 ? roles.join('') : roles.length > 500 ? this.client.utils.trimArray(roles) : 'None'}`)
           .setTimestamp()
-          .setFooter(`❱ ${msg.guild.name}`);
+          .setFooter(`❱ ${msg.guild.name}`, client.user.displayAvatarURL());
       msg.channel.send({embed});
 
 //     const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
