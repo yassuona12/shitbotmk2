@@ -5,8 +5,9 @@ module.exports.run = async(bot, message, args) => {
 let icon = message.guild.iconURL({  dynamic: true  })
 let serverid = message.guild.id
 let servercreated = moment(message.guild.createdAt).format('ll');
+    message.delete();
       let serverEmbed = new Discord.MessageEmbed()
-        .setAuthor(`${message.guild.name}, ${icon} - ${serverid}`)
+        .setAuthor(message.guild.name, (icon)) 
         .setColor("#15f153")
         .setThumbnail(message.guild.iconURL)
         .addField("Server Name", `❱ **\`${message.guild.name}\`**`, true)
@@ -21,8 +22,7 @@ let servercreated = moment(message.guild.createdAt).format('ll');
         .setThumbnail(message.guild.iconURL)
         .setFooter(`ID: ${message.guild.id}`)
         .setTimestamp();
-  
-      message.channel.send(serverEmbed);
+      message.channel.send(serverEmbed).then (msg => msg.delete({  timeout: 10000  }));
 }
 
 module.exports.help = {
