@@ -16,14 +16,12 @@ exports.run = async (client, msg, args) => {
           .setColor(3447003)
           .setThumbnail(user.avatarURL)
           .setTimestamp()
-          .setURL(`${user.avatarURL}`)
-          .addField('Currently', `${muser.presence.status}`, true)
+          .addField('Status', `${muser.presence.status}`, true)
           .addField('Game', `${muser.presence.game ? user.presence.game.name : 'None'}`, true)
           .addField('Joined Discord', `${moment(user.createdAt).toString().substr(0, 15)}\n(${moment(user.createdAt).fromNow()})`, true)
           .addField('Joined Server', `${moment(muser.joinedAt).toString().substr(0, 15)}\n(${moment(muser.joinedAt).fromNow()})`, true)
-          .addField('Roles', `${roles.length < 500 ? roles.join(', ') : roles.length > 500 ? this.client.utils.trimArray(roles) : 'None'}`, true)
-          .addField('Is Bot', `${user.bot.toString().toUpperCase()}`, true)
-          .setFooter(`univers cafe`, msg.guild.iconURL);
+          .addField('Roles', `${roles.length < 500 ? roles.join('') : roles.length > 500 ? this.client.utils.trimArray(roles) : 'None'}`, true)
+          .setFooter(msg.guild.name, msg.guild.iconURL);
       msg.channel.send({embed});
 
 //     const member = message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.member;
