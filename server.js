@@ -71,28 +71,23 @@ bot.on("message", async message => {
 });
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LOGS COMMANDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
 //MESSAGE DELETE
-bot.on("messageDelete", async (message) => {
-  const entry = await message.guild.fetchAuditLogs({type: 'MESSAGE_DELETE'}).then(audit => audit.entries.first())
-  let user = ""
-    if (entry.extra.channel.id === message.channel.id
-      && (entry.target.id === message.author.id)
-      && (entry.createdTimestamp > (Date.now() - 5000))
-      && (entry.extra.count >= 1)) {
-    user = entry.executor.username
-  } else { 
-    user = message.author
+bot.on('messageDelete', async (message) => {
+  const CHANNEL = '⌘・bots◟log';
+  if (message.channel.type == 'text') {
+    var logger = message.guild.channels.cache.find(
+      channel => channel.name === CHANNEL
+    );
+    if (logger) {
+      const embed = new Discord.MessageEmbed()
+        .setColor('#0099ff')
+        .setAuthor(message.author.tag, message.author.avatarURL)
+        .setDescription(`**Message Send by ${message.author} in Channel ${message.channel} Has been Deleted**\n❱ ${message.content}`)
+        .setTimestamp()
+        .setFooter("log", message.guild.iconURL);
+      logger.send({ embed });
+    }
   }
-  const deleted = new Discord.MessageEmbed()
-    .setColor('#0099ff')
-    .setAuthor(message.author.tag, message.author.avatarURL)
-    .setDescription(`**Message Send by ${user} in Channel ${message.channel} Has been Deleted**\n❱ ${message.content}`)
-    .setTimestamp()
-    .setFooter("log", message.guild.iconURL);
-  let logchan = message.guild.channels.cache.find(ch => ch.name === "log");
-  if (!logchan) return; 
-  logchan.send(deleted);
 });
-
 
 //WELCOMER & GOODBYE
 bot.on("guildMemberAdd", member => {
