@@ -80,7 +80,7 @@ bot.on('messageDelete', async (message) => {
     if (logger) {
       const embed = new Discord.MessageEmbed()
         .setColor('#0099ff')
-        .setAuthor(message.author.tag, message.author.avatarURL)
+        .setAuthor(message.author, message.author.avatarURL)
         .setDescription(`**Message Send by ${message.author} in Channel ${message.channel} Has been Deleted**\n❱ ${message.content}`)
         .setTimestamp()
         .setFooter("log", message.guild.iconURL);
