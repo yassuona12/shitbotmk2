@@ -8,14 +8,14 @@ module.exports.run = async (bot, message, args) => {
       message.reply("Usage: !ban <user> <reason>");
       return;
     }
-    let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if(!bUser) return errors.cantfindUser(message.channel);
-    if(bUser.id === bot.user.id) return errors.botuser(message);
+    let bUser = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
+    if(!bUser) return ;
+    if(bUser.id === bot.user.id) return message.channel.send('Member tidak ditemukan');
     let bReason = args.join(" ").slice(22);
-    if(!bReason) return errors.noReason(message.channel);
+    if(!bReason) return message.channel.send('Silahkan beri alasan');
     if(bUser.hasPermission("MANAGE_MESSAGES")) return errors.equalPerms(message, bUser, "MANAGE_MESSAGES");
 
-    let banEmbed = new Discord.RichEmbed()
+    let banEmbed = new Discord.MessageEmbed()
     .setDescription("~Ban~")
     .setColor("#bc0000")
     .addField("Banned User", `${bUser} with ID ${bUser.id}`)
@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
     .addField("Time", message.createdAt)
     .addField("Reason", bReason);
 
-    let incidentchannel = message.guild.channels.find(`name`, "log");
+    let incidentchannel = message.guild.channels.find(ch => ch.name = "⌘・bots◟log");
     if(!incidentchannel) return message.channel.send("Can't find incidents channel.");
 
     message.guild.member(bUser).ban(bReason);
