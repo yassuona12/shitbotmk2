@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
   if(!message.member.hasPermission("ADMINISTRATOR") && message.author.id !== "243728573624614912") return message.channel.send("Kalau gapunya Permission, Gausah nyoba - nyoba!");
 
     let member = message.guild.member(message.mentions.members.first()) || message.guild.members.cache.get(args[0]);
-    if(!member) return message.channel.send(xdemb)
+    if(!member) return message.channel.send('<usage>: j!ban [members]')
     if(member.hasPermission("ADMINISTRATOR")) return message.channel.send("Member ini tidak bisa di *Ban*")
     if(member.user.id === "243728573624614912") return message.channel.send("Aku tidak bisa meng-*Ban* masterku")
 
@@ -24,16 +24,16 @@ module.exports.run = async (bot, message, args) => {
     let banEmbed = new Discord.MessageEmbed()
     .setDescription("~Ban~")
     .setColor("#bc0000")
-    .addField("Banned User", `${bUser} with ID ${bUser.id}`)
+    .addField("Banned User", `${member} with ID ${member.id}`)
     .addField("Banned By", `<@${message.author.id}> with ID ${message.author.id}`)
     .addField("Banned In", message.channel)
     .addField("Time", message.createdAt)
-    .addField("Reason", bReason);
+    .addField("Reason", reason);
 
     let incidentchannel = message.guild.channels.find(ch => ch.name = "⌘・bots◟log");
     if(!incidentchannel) return message.channel.send("Can't find incidents channel.");
 
-    message.guild.member(bUser).ban(bReason);
+    message.guild.member(member).ban(reason);
     incidentchannel.send(banEmbed);
 }
 
