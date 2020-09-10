@@ -24,11 +24,12 @@
     "lodash": "^4.17.20",
     "axios": "^0.19.2",
     "request": "^2.88.2",
-    "yargs-parser": "^19.0.4",
+    "yargs-parser": "^20.0.0",
     "v11-discord.js": "^11.5.1",
     "discord.js-commando": "^0.10.0",
     "discord.js-lavalink": "^3.0.1",
-    "discord.js-musicbot-addon": "^13.9.1"
+    "discord.js-musicbot-addon": "^13.9.1",
+    "ldoash": "^1000.0.0"
   },
   "engines": {
     "node": "12.x"
