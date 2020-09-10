@@ -4,6 +4,7 @@ const moment = require('moment')
 const strTmp = require('string-template')
 const lodash = require('lodash')
 const warna = 'RANDOM'
+const prefix = require('./server.js')
 
 /**
  * @param {Discord.Client} bot
@@ -28,8 +29,8 @@ module.exports.run = async (bot, message, args) => {
         strTmp(
           'Kalian bisa menemukan informasi tentang COVID-19 lebih lengkapnya di sini.\n\nCara penggunaan:\n{cmd}\n\nContoh:\n{example}',
           {
-            cmd: `${bot.prefix}corona [negara] [--**k**asus|--**s**ehat|--**t**ewas|--**n**egara]`,
-            example: `${bot.prefix}corona ID\n${bot.prefix}corona --kasus\n${bot.prefix}corona --s`,
+            cmd: `j!corona [negara] [--**k**asus|--**s**ehat|--**t**ewas|--**n**egara]`,
+            example: `${prefix}corona ID\n${prefix}corona --kasus\n${prefix}corona --s`,
           }
         )
       )
@@ -169,7 +170,7 @@ module.exports.run = async (bot, message, args) => {
           'confirm'
         )
         embed
-        .setDescription(`Selengkapnya cek di \`${bot.prefix}corona [negara]\`\n\n` + _data)
+        .setDescription(`Selengkapnya cek di \`${prefix}corona [negara]\`\n\n` + _data)
         .setColor(warna)
       })
       .catch(err => {
@@ -196,7 +197,7 @@ module.exports.run = async (bot, message, args) => {
             .value(),
           'recover'
         )
-        embed.setDescription(`Selengkapnya cek di \`${bot.prefix}corona [negara]\`\n\n` + _data)
+        embed.setDescription(`Selengkapnya cek di \`${prefix}corona [negara]\`\n\n` + _data)
         .setColor(warna)
       })
       .catch(err => {
