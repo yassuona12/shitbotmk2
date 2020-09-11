@@ -6,7 +6,7 @@ exports.run = async (client, message, args, tools) => {
     const { body } = await superagent
     .get("https://nekos.life/api/kiss");
     
-    const embed = new Discord.MessageEmbed()
+    const embed = new Discord.RichEmbed()
     .setColor("#ff9900")
     .setTitle(`OwO, ${message.author.username} kissed ${message.mentions.users.first().username}`)
     .setImage(body.url) 

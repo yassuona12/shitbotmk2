@@ -2,7 +2,7 @@
 const Discord = require('discord.js');
 
 module.exports.run = (bot, message) => {
-  let embed = new Discord.MessageEmbed()
+  let embed = new Discord.RichEmbed()
 
    .setDescription(`🛑Pong! It took **${Math.abs(Date.now() - message.createdTimestamp)}**ms`);
 
