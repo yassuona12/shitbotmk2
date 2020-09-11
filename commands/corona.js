@@ -1,16 +1,11 @@
 const Discord = require('discord.js')
-const axios = require('discord.js')
+const axios = require('axios')
 const moment = require('moment')
 const strTmp = require('string-template')
 const lodash = require('lodash')
 const warna = 'RANDOM'
-const prefix = require('../server.js')
-
-/**
- * @param {Discord.Client} bot
- * @param {Discord.Message} message
- * @param {string[]} args
- */
+const botS = require('../botsettings.json')
+const botS = bo
 module.exports.run = async (bot, message, args) => {
   // Setting
   const argv = require('yargs-parser')(args)
@@ -25,23 +20,10 @@ module.exports.run = async (bot, message, args) => {
   if (args.length === 0) {
     embed
       .setAuthor('Pantau COVID-19 di sini!', '', 'https://github.com/mathdroid/covid-19-api')
-      .setDescription(
-        strTmp(
-          'Kalian bisa menemukan informasi tentang COVID-19 lebih lengkapnya di sini.\n\nCara penggunaan:\n{cmd}\n\nContoh:\n{example}',
-          {
-            cmd: `j!corona [negara] [--**k**asus|--**s**ehat|--**t**ewas|--**n**egara]`,
-            example: `${prefix}corona ID\n${prefix}corona --kasus\n${prefix}corona --s`,
-          }
-        )
-      )
+      .setDescription(`Kalian bisa menemukan informasi tentang COVID-19 lebih lengkapnya di sini.\n\nCara Penggunaan:\nj!corona [negara] [--**k**asus|--**s**ehat|--**t**ewas|--**n**egara]\n\nContoh:\n${prefix}corona ID\n${prefix}corona --kasus\n${prefix}corona --s`)
       .setImage('https://covid19.mathdro.id/api/og')
       .setColor(warna)
   }
-
-  /**
-   * https://blog.abelotech.com/posts/number-currency-formatting-javascript/
-   * @param {number} number
-   */
   function numeralFormat (number) {
     return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
   }

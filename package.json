@@ -18,7 +18,8 @@
     "os": "^0.1.1",
     "fs": "^0.0.2",
     "string-template": "^1.0.0",
-    "yargs-parser": "^20.0.0"
+    "yargs-parser": "^20.0.0",
+    "axios": "^0.19.2"
   },
   "engines": {
     "node": "12.x"
