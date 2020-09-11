@@ -8,7 +8,7 @@ if (message.channel instanceof Discord.DMChannel) return;
   let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
   if(!tomute) return message.reply('Please mention members first');
   
-  // if(tomute.hasPermission("ADMINISTRATOR")) return message.reply("I can't umute this member");
+   if(tomute.hasPermission("ADMINISTRATOR")) return message.reply("I can't umute this member");
   let muterole = message.guild.roles.cache.find(r => r.name === 'JPMute');
   
   tomute.roles.remove(muterole.id);
