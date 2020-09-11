@@ -5,7 +5,7 @@ const strTmp = require('string-template')
 const lodash = require('lodash')
 const warna = 'RANDOM'
 const botS = require('../botsettings.json')
-const botS = bo
+const prefix = botS.prefix
 module.exports.run = async (bot, message, args) => {
   // Setting
   const argv = require('yargs-parser')(args)
@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
   if (args.length === 0) {
     embed
       .setAuthor('Pantau COVID-19 di sini!', '', 'https://github.com/mathdroid/covid-19-api')
-      .setDescription(`Kalian bisa menemukan informasi tentang COVID-19 lebih lengkapnya di sini.\n\nCara Penggunaan:\nj!corona [negara] [--**k**asus|--**s**ehat|--**t**ewas|--**n**egara]\n\nContoh:\n${prefix}corona ID\n${prefix}corona --kasus\n${prefix}corona --s`)
+      .setDescription(`**Kalian bisa menemukan informasi tentang COVID-19 lebih lengkapnya di sini.\n\nCara Penggunaan:\n\`${prefix}corona [negara]\` \n[--kasus|--sehat|--tewas|--negara]\`\n\nContoh:\n\`${prefix}corona ID\`\n\`${prefix}corona --kasus\`\n\`${prefix}corona --s\`**`)
       .setImage('https://covid19.mathdro.id/api/og')
       .setColor(warna)
   }
