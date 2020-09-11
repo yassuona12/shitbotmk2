@@ -4,7 +4,7 @@ const moment = require('moment')
 const strTmp = require('string-template')
 const lodash = require('lodash')
 const warna = 'RANDOM'
-const prefix = require('./server.js')
+const prefix = require('../server.js')
 
 /**
  * @param {Discord.Client} bot
@@ -224,7 +224,7 @@ module.exports.run = async (bot, message, args) => {
             .value(),
           'death'
         )
-        embed.setDescription(`Selengkapnya cek di \`${bot.prefix}corona [negara]\`\n\n` + _data)
+        embed.setDescription(`Selengkapnya cek di \`${prefix}corona [negara]\`\n\n` + _data)
       })
       .catch(err => {
         ifError = true
