@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-const axios = require('axios').default
+const axios = require('discord.js')
 const moment = require('moment')
 const strTmp = require('string-template')
 const lodash = require('lodash')

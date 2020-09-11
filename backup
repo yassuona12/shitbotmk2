@@ -136,3 +136,48 @@ bot.on("guildMemberRemove", member => {
 
 });
 bot.login(process.env.TOKEN);
+
+
+
+
+
+
+
+
+{
+  "name": "ok",
+  "version": "1.0.0",
+  "description": "woi bot",
+  "main": "server.js",
+  "author": "RimiRin",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "discord.js": "^12.3.1",
+    "chokidar": "^3.4.2",
+    "expres": "^0.0.5",
+    "express": "^4.17.1",
+    "moment": "^2.27.0",
+    "superagent": "^6.1.0",
+    "jimp": "^0.16.1",
+    "quick.db": "^7.1.1",
+    "os": "^0.1.1",
+    "os-utils": "^0.0.14",
+    "fs": "^0.0.2",
+    "string-template": "^1.0.0",
+    "lodash": "^4.17.20",
+    "axios": "^0.19.2",
+    "request": "^2.88.2",
+    "yargs-parser": "^20.0.0",
+    "v11-discord.js": "^11.5.1",
+    "discord.js-commando": "^0.10.0",
+    "discord.js-lavalink": "^3.0.1",
+    "discord.js-musicbot-addon": "^13.9.1",
+    "ldoash": "^1000.0.0"
+  },
+  "engines": {
+    "node": "12.x"
+  }
+}
