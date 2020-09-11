@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
   if (args.length === 0) {
     embed
       .setAuthor('Pantau COVID-19 di sini!', '', 'https://github.com/mathdroid/covid-19-api')
-      .setDescription(`**Kalian bisa menemukan informasi tentang COVID-19 lebih lengkapnya di sini.\n\nCara Penggunaan:\n\`${prefix}corona [negara]\` \n[--kasus|--sehat|--tewas|--negara]\`\n\nContoh:\n\`${prefix}corona ID\`\n\`${prefix}corona --kasus\`\n\`${prefix}corona --s\`**`)
+      .setDescription(`**Kalian bisa menemukan informasi tentang COVID-19 lebih lengkapnya di sini.\n\nCara Penggunaan:\n\`${prefix}corona [negara]\` \n[--kasus|--sehat|--tewas|--negara]\n\nContoh:\n\`${prefix}corona ID\`\n\`${prefix}corona --kasus\`\n\`${prefix}corona --s\`**`)
       .setImage('https://covid19.mathdro.id/api/og')
       .setColor(warna)
   }
