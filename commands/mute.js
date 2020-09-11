@@ -2,11 +2,11 @@ const Discord = require('discord.js');
 exports.run = async (bot, message, args) => {
   
   if(!message.member.hasPermission('MANAGE_ROLES') || !message.member.hasPermission(["KICK_MEMBERS", "BAN_MEMBERS"]) || !message.guild.owner) return message.reply("Kamu tidak memiliki izi untuk menggunakan perintah ini");
-	if(!message.guild.me.hasPermission(["MANAGE_ROLES","ADMINISTRATOR"])) return message.reply("Saya tidak memiliki izin yang diperlukan");
+	if(!message.guild.me.hasPermission(["MANAGE_ROLES","ADMINISTRATOR"])) return message.reply("I haven't permission");
   let mentionedUser = message.mentions.users.first();
 	let toMute = message.mentions.members.first();
-	if(!toMute) return message.channel.send('Silahkan Mention Member Terlebih Dahulu');
-  if(toMute.hasPermission("ADMINISTRATOR")) return message.reply("Member ini tidak bisa di mute");  
+	if(!toMute) return message.channel.send('Mention members first');
+  if(toMute.hasPermission("ADMINISTRATOR")) return message.reply("Can't mute this member");  
   
 	let reason = args.slice(1).join(" ");
 	if(!reason) reason = "No reason given";
