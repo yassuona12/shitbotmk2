@@ -10,7 +10,6 @@ module.exports.run = async (bot, message, args) => {
     let member = message.guild.member(message.mentions.members.first()) || message.guild.members.cache.get(args[0]);
     if(!member) return message.channel.send('<usage>: j!ban [members]')
     if(member.hasPermission("ADMINISTRATOR")) return message.channel.send("Member ini tidak bisa di *Ban*")
-    if(member.user.id === "243728573624614912") return message.channel.send("Aku tidak bisa meng-*Ban* masterku")
 
   if(member.id === message.author.id) return message.channel.send("Kamu tidak bisa meng-*Ban* diri sendiri")
 
