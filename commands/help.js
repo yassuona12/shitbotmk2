@@ -7,8 +7,8 @@ module.exports.run = async(bot, message, args) => {
     .setDescription(`hello this is a list of Japanisme bot commands \nif you have any suggestions, you can tag our developer ^^`)
     .setColor("#20C20E")
     .setThumbnail(bot.user.displayAvatarURL({ dynamic:true  }))
-    .addField("❱ General", "**``help 8ball kiss hug userinfo ping coinflip hello avatar say serverinfo report``**")
-    .addField("❱ Moderator","**``tempmute kick clear unban ban mute``**")
+    .addField("❱ General", "**``help  8ball  kiss  hug  userinfo  ping  coinflip  hello  avatar  say  serverinfo  report``**")
+    .addField("❱ Moderator","**``tempmute  kick  clear  unban  ban  mute  addrole``**")
     .setTimestamp()
     .setFooter(`❱ ${message.guild.name}`, bot.user.displayAvatarURL())
 

@@ -18,7 +18,7 @@ let member = message.mentions.users.first() || message.author;
   if (!roles.size) return;
 
   members.forEach(member => member.roles.add(roles)) 
-  return message.channel.send(`Selamat ${member}, Kamu telah mendapatkan role ${role}`)
+  return message.channel.send(`${member} has give role ${role}`)
 }
 
 module.exports.help = {
