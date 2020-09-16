@@ -9,20 +9,16 @@ module.exports.run = async (bot, message, args) => {
     message.reply("Usage: !addrole <user> <role>");
     return;
   }
-  let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.cache.get(args[0]);
-  if (!rMember) return errors.cantfindUser(message.channel);
-  let role = args.join(" ").slice(22);
-  if (!role) return message.reply("Specify a role!");
-  let gRole = message.guild.roles.cache.find(role => role.name);
-  if (!gRole) return message.reply("Couldn't find that role.");
-  await (rMember.roles.add(gRole.id));
+let member = message.mentions.users.first() || message.author;
+    let role = message.mentions.roles.first()
+    let members = message.mentions.members,
+    roles = message.mentions.roles;
 
-  try {
-    await rMember.send(`Congrats, you have been given the role ${gRole.name}`)
-  } catch (e) {
-    console.log(e.stack);
-    message.channel.send(`Congrats to <@${rMember.id}>, they have been given the role ${gRole.name}. We tried to DM them, but their DMs are locked.`)
-  }
+  if (!members.size) return;
+  if (!roles.size) return;
+
+  members.forEach(member => member.roles.add(roles)) 
+  return message.channel.send(`Selamat ${member}, Kamu telah mendapatkan role ${role}`)
 }
 
 module.exports.help = {
