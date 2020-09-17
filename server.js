@@ -101,12 +101,14 @@ let chx = db.get(`welchannel_${member.guild.id}`); //defining var
   }
 
   let wembed = new Discord.MessageEmbed() //define embed
-  .setAuthor(member.user.username, member.user.avatarURL())
-  .setColor("#ff2050")
+  .setColor("#0099ff")
+  .setAuthor(`Selamat Datang di ${member.guild.name}`, member.guild.iconURL({  dynamic: true  }))
   .setThumbnail(member.user.avatarURL())
-  .setDescription(`We are very happy to have you in our server`);
+  .setDescription(`Hai <@${member.id}> **Selamat datang di server ${member.guild.name}.\nPertamatama**`)
+  .setTimestamp()
   
-  client.channels.cache.get(chx).send(wembed)
+  const channel = member.guild.channels.cache.get(chx)
+  channel.send(wembed)
 });
 
 bot.on("guildMemberRemove", member => {
