@@ -103,8 +103,7 @@ let chx = db.get(`welchannel_${member.guild.id}`); //defining var
   let wembed = new Discord.MessageEmbed() //define embed
   .setColor("#0099ff")
   .setAuthor(`Selamat Datang di ${member.guild.name}`, member.guild.iconURL({  dynamic: true  }))
-  .setThumbnail(member.user.avatarURL())
-  .setDescription(`Hai <@${member.id}> **Selamat datang di server ${member.guild.name}.\nSebelum itu, silahkan lihat dulu channel \n▬<@#662721859481108490>▬ ▬<@#744568027189608568>▬ ▬<@#741726803613188106>▬ ▬<@#662722010450755604>▬ ▬<@#752149490642976838>▬\n Jika bingung bisa tag <@$662740013582254121> atau member yang sedang online.\n Salam Japanisme**`)
+  .setDescription(`**Hai** <@${member.id}> **Selamat datang di server \n${member.guild.name}.\nSebelum itu, silahkan lihat dulu channel** \n\n<#662721859481108490> <#744568027189608568> <#741726803613188106> <#662722010450755604> <#752149490642976838>\n **Jika bingung bisa tag** <@&662740013582254121> **atau member yang sedang online.\n Salam Japanisme**`)
   .setTimestamp()
   
   const channel = member.guild.channels.cache.get(chx)
