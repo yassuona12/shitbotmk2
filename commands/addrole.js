@@ -12,12 +12,12 @@ module.exports.run = async (bot, message, args) => {
 let member = message.mentions.users.first() || message.author;
     let role = message.mentions.roles.first()
     let members = message.mentions.members,
-    roles = message.mentions.roles;
+    roles = message.mentions.roles
 
   if (!members.size) return;
   if (!roles.size) return;
 
-  members.forEach(member => member.roles.add(roles.name)) 
+  members.forEach(member => member.roles.add(roles)) 
   return message.channel.send(`${member} has give role ${role}`)
 }
 
