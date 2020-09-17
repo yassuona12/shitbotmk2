@@ -17,7 +17,7 @@ let member = message.mentions.users.first() || message.author;
   if (!members.size) return;
   if (!roles.size) return;
 
-  members.forEach(member => member.roles.add(roles)) 
+  members.forEach(member => member.roles.add(roles.name)) 
   return message.channel.send(`${member} has give role ${role}`)
 }
 
