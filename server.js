@@ -4,6 +4,7 @@ const fs = require("fs");
 const request = require("request");
 const client = new Discord.Client();
 const prefix = botSettings.prefix;
+const db = require("quick.db")
 
 const bot = new Discord.Client({ disableEveryone: true });
 bot.commands = new Discord.Collection();
@@ -93,13 +94,19 @@ bot.on("messageDelete", async message => {
 
 //WELCOMER & GOODBYE
 bot.on("guildMemberAdd", member => {
-  let universCafe = bot.guilds.cache.get("661777660229189663");
-  let memberCount = universCafe.memberCount;
-  let memberCountChannel = universCafe.channels.cache.get("752409981730422915");
-  memberCountChannel
-    .setName(`Users count : ` + memberCount)
-    .then(result => console.log(result))
-    .catch(error => console.log(error));
+let chx = db.get(`welchannel_${member.guild.id}`); //defining var
+  
+  if(chx === null) { //check if var have value or not
+    return;
+  }
+
+  let wembed = new Discord.MessageEmbed() //define embed
+  .setAuthor(member.user.username, member.user.avatarURL())
+  .setColor("#ff2050")
+  .setThumbnail(member.user.avatarURL())
+  .setDescription(`We are very happy to have you in our server`);
+  
+  client.channels.cache.get(chx).send(wembed)
 });
 
 bot.on("guildMemberRemove", member => {
