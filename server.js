@@ -104,7 +104,7 @@ let chx = db.get(`welchannel_${member.guild.id}`); //defining var
   .setColor("#0099ff")
   .setAuthor(`Selamat Datang di ${member.guild.name}`, member.guild.iconURL({  dynamic: true  }))
   .setThumbnail(member.user.avatarURL({  dynamic: true, size: 512}  ))
-  .
+  .setImage("https://cdn.discordapp.com/attachments/460612737064763403/756573571832348793/helena-viana-anime-girl-welcome-by-ell.gif")
   .setDescription(`**Hai** <@${member.id}> **Selamat datang di server \n${member.guild.name}.\n\nSebelum itu, silahkan lihat dulu channel** \n<#662721859481108490> <#744568027189608568> <#741726803613188106> \n<#662722010450755604> <#752149490642976838>\n **Jika bingung bisa tag** <@&662740013582254121> **\natau member yang sedang online.\n __Salam Japanisme__**`)
   .setTimestamp()
   
