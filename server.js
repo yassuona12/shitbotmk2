@@ -129,7 +129,7 @@ bot.on("message", async message => {
         "https://cdn.discordapp.com/attachments/454699750336364554/753616779569528842/images_-_2020-09-10T220339.844.jpeg"
       ]
     });
-  if (message.content.startsWith(`<@474963600428105749>`))
-    return message.channel.send(" Apa Sayang? ");
+  
+    
 });
 bot.login(process.env.TOKEN);
