@@ -130,12 +130,10 @@ bot.on("message", async message => {
       ]
     });
   if(message.content.startsWith('+ann')) {
-    let rest = message.content.slice('+ann'.lenght);
-    let array = rest.split
     let channel = message.mentions.channels.first();
-//    let announcement = args.slice(1).join(" ");
+    let array = channel.slice(1).join(' ')
 
-//    channel.send(announcement);
+    channel.send(array);
 }
     
 });
