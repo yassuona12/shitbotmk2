@@ -137,18 +137,18 @@ bot.on("message", async message => {
 }
     
 });
-client.on("message", message => {
+bot.on("message", message => {
   if (message.content.startsWith('j!announce')) {
     let rest_of_the_string = message.content.slice('j!announce'.length); //removes the first part
-    let array_of_arguments = rest_of_the_string.split(','); //[title, description, link, image]
+    let array_of_arguments = rest_of_the_string.split(',.'); //[title, description, link, image]
 
     let embed = new Discord.MessageEmbed()
       .setTitle(array_of_arguments[0])
       .setDescription(array_of_arguments[1])
-      .setImage(array_of_arguments[4])
+      .setImage(array_of_arguments[2] || null)
       .setThumbnail(message.guild.iconURL({  dynamic: true  }))
       .setColor(0x0099ff)
-      .setFooter("Japanesme Announcemen")
+      .setFooter("Japanisme Announcement")
       .setTimestamp();
 
     message.channel.send({ embed });
