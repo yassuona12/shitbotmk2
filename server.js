@@ -154,4 +154,4 @@ client.on("message", message => {
     message.channel.send({ embed });
   }
 });
-bot.login(process.env.TOKEN);
+bot.login(process.env.TOKEN).catch(console.error);
