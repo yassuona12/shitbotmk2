@@ -9,7 +9,7 @@ let servercreated = moment(message.guild.createdAt).format('ll');
       let serverEmbed = new Discord.MessageEmbed()
         .setAuthor(message.guild.name, (icon)) 
         .setColor("#15f153")
-        .setThumbnail(message.guild.iconURL)
+        .setThumbnail(icon)
         .addField("Server Name", `❱ **\`${message.guild.name} - ${message.guild.id}\`**`)
         .addField("Server Owner", `❱ **\`${message.guild.owner.user.tag}\`**`)
         .addField("Server Region", `❱ **\`${message.guild.region}\`**`, true)
