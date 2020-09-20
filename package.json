@@ -19,7 +19,8 @@
     "fs": "^0.0.2",
     "string-template": "^1.0.0",
     "yargs-parser": "^20.0.0",
-    "axios": "^0.20.0"
+    "axios": "^0.20.0",
+    "got": "^11.7.0"
   },
   "engines": {
     "node": "12.x"
