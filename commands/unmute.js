@@ -8,7 +8,6 @@ if (message.channel instanceof Discord.DMChannel) return;
   let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]));
   if(!tomute) return message.reply('Silahkan Mention member Terlebih Dahulu');
   
-  if(tomute.hasPermission("ADMINISTRATOR")) return message.reply("Member ini tidak bisa di mute");
   let muterole = message.guild.roles.cache.find(r => r.name === 'JPMute');
   
   tomute.roles.remove(muterole.id);

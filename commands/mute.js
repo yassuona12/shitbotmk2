@@ -6,7 +6,6 @@ exports.run = async (bot, message, args) => {
   let mentionedUser = message.mentions.users.first();
 	let toMute = message.mentions.members.first();
 	if(!toMute) return message.channel.send('Silahkan Mention Member Terlebih Dahulu');
-  if(toMute.hasPermission("ADMINISTRATOR")) return message.reply("Member ini tidak bisa di mute");  
   
 	let reason = args.slice(1).join(" ");
 	if(!reason) reason = "No reason given";
