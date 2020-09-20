@@ -3,10 +3,10 @@ const Discord = require("discord.js");
 exports.run = async (bot, message, args) => {
     if(!args[1]) return message.reply("Please ask a full question");
     let replies = [
-        'Maybe.',
-	    'Certainly not.',
-	    'I hope so.',
-	    'Not in your wildest dreams.',
+        'Mungkin.',
+	    'tentu tidak.',
+	    'saya berharap begitu.',
+	    '.',
     	'There is a good chance.',
 	    'Quite likely.',
     	'I think so.',
