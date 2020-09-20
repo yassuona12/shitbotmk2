@@ -1,9 +1,6 @@
 const Discord = require('discord.js')
 exports.run = async (message, client, args) => {
-    let channel = message.mentions.channels.first()
-    if(!channel) {
-      return message.channel.send('Silahkan mention channel yang diinginkan')
-    }
+    let channel = message.mentions.channels()
     let data = args.slice(1).join(' ')
     let content = data.split(',.'); //[title, description, link, image]
     let announce = new Discord.MessageEmbed()
@@ -13,7 +10,7 @@ exports.run = async (message, client, args) => {
     .setDescription()
     .setTimestamp()
     .setFooter('Announcement Japanisme')
-    channel.send(announce)
+    client.channels.get(c => c.id === channel.id).send(announce)
 //     let embed = new Discord.MessageEmbed()
 //       .setColor(0x00AE86)
 //       .setTitle(array_of_arguments[0])
