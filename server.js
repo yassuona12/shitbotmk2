@@ -130,7 +130,7 @@ bot.on("message", async message => {
       ]
     });
   if (message.contect.startsWith(`<@474963600428105749>`))
-  
+     return message.reply(' ')
     
 });
 bot.login(process.env.TOKEN);
