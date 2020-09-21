@@ -206,20 +206,22 @@ bot.on("message", message => {
 
 
 
-const embed = new Discord.MessageEmbed()
-	.setTitle('Some Title')
-	.setColor('#0099ff');
+//const embed = new Discord.MessageEmbed()
+// 	.setTitle('Some Title')
+// 	.setColor('#0099ff');
 
-bot.once('ready', async () => {
-const webhookClient = new Discord.WebhookClient('757566556845637642', 'zuKTFESj0AFKm9Myo-NNSKwm5x3XV46u_MNXxogD7NrdZBIhffIUZ9cmdLCVNqcbvio4');
+// bot.once('ready', async () => {
+// 	const channel = bot.channels.cache.get('743754814403379272');
+// 	try {
+// 		const webhooks = await channel.fetchWebhooks();
+// 		const webhook = webhooks.first();
 
-const embed = new Discord.MessageEmbed()
-	.setTitle('Japanisme')
-	.setColor('#0099ff');
-
-webhookClient.send('Webhook test', {
-	username: 'some-username',
-	avatarURL: 'https://i.imgur.com/wSTFkRM.png',
-	embeds: [embed],
-});
-});
+// 		await webhook.send('Webhook test', {
+// 			username: 'some-username',
+// 			avatarURL: 'https://i.imgur.com/wSTFkRM.png',
+// 			embeds: [embed],
+// 		});
+// 	} catch (error) {
+// 		console.error('Error trying to send: ', error);
+// 	}
+// });

@@ -1,0 +1,4 @@
+{ 
+  "username":"Japenisme",
+  "content" : "@ {{UserName}} tweeted this at {{CreatedAt}} : {{LinkToTweet}}"
+}
