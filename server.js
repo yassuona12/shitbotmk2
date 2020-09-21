@@ -92,13 +92,13 @@ bot.on("messageDelete", async message => {
   }
 });
 
-client.on("messageUpdate", (oldMessage, newMessage) => {
+bot.on("messageUpdate", (oldMessage, newMessage) => {
 	if (oldMessage.author.bot) return;
 	if (oldMessage.content == newMessage.content) return;
 	let logchannel = oldMessage.guild.channels.cache.find(c => c.name === "⌘・bots◟log");
 	if (!logchannel) return;
 	const embed = new Discord.MessageEmbed()
-		.setAuthor(oldMessage.author.tag, oldMessage.author.avatarURL)
+		.setAuthor(oldMessage.author.tag, oldMessage.author.displayAvatarURL())
 		.setFooter(`Author ID: ${oldMessage.author.id} | Message ID: ${oldMessage.id}`)
 		.setTimestamp(new Date())
 		.setColor("#00cb16")
