@@ -5,6 +5,7 @@ const request = require("request");
 const client = new Discord.Client({disableEveryone : true});
 const prefix = botSettings.prefix;
 const db = require("quick.db")
+const messageLog = new Discord.WebhookClient(process.env.WEBHOOK_ID, process.env.WEBHOOK_TOKEN)
 
 const bot = new Discord.Client({ disableEveryone: true });
 bot.commands = new Discord.Collection();
@@ -103,24 +104,59 @@ bot.on("guildMemberUpdate", (oldMember, newMember) => {
 
 
 //MESSAGE DELETE
-bot.on("messageDelete", async message => {
-  const CHANNEL = "⌘・bots◟log";
-  if (message.channel.type == "text") {
-    var logger = message.guild.channels.cache.find(
-      channel => channel.name === CHANNEL
-    );
-    if (logger) {
-      const embed = new Discord.MessageEmbed()
-        .setColor("#0099ff")
-        .setAuthor(message.author.tag, message.author.displayAvatarURL())
-        .setDescription(
-          `**Message Send by ${message.author} in Channel ${message.channel} Has been Deleted**\n❱ ${message.content}`
-        )
-        .setTimestamp()
-        .setFooter("log", message.guild.iconURL);
-      logger.send({ embed });
-    }
-  }
+//bot.on("messageDelete", async message => {
+  //const CHANNEL = "⌘・bots◟log";
+  //if (message.channel.type == "text") {
+    //var logger = message.guild.channels.cache.find(
+     // channel => channel.name === CHANNEL
+   // );
+    //if (logger) {
+     // const embed = new Discord.MessageEmbed()
+      //  .setColor("#0099ff")
+      //  .setAuthor(message.author.tag, message.author.displayAvatarURL())
+     //   .setDescription(
+     //     `**Message Send by ${message.author} in Channel ${message.channel} Has been Deleted**\n❱ ${message.content}`
+      //  )
+     //   .setTimestamp()
+  //      .setFooter("log", message.guild.iconURL);
+ //     logger.send({ embed });
+ //   }
+//}
+//});
+
+bot.on("messageDelete", message => {
+	if (message.author.bot) return;
+	if (message.guild.cache.id == '') {
+		if (message.attachments.size == 0) return;
+		let attachments = [];
+		message.attachments.forEach((attachment) => {
+			attachments.push(attachment.proxyURL)
+		});
+		setTimeout(() => {
+                        messageLog.send("Image attached", {files: attachments}).catch(console.error)
+                }, 500);
+                return
+	}
+	let logchannel = message.guild.channels.cache.find(c => c.name === "⌘・bots◟log");
+	if (!logchannel) return;
+	const embed = new Discord.MessageEmbed()
+		.setAuthor(message.author.tag, message.author.DisplayAvatarURL)
+		.setFooter(`Author ID: ${message.author.id} | Message ID: ${message.id}`)
+		.setTimestamp(new Date())
+		.setColor("#cb8900")
+		.setTitle("Message deleted")
+		.addField("Channel", message.channel);
+
+	if (message.content) embed.addField("Content", message.content.substring(0, 1024));
+	logchannel.send(embed);
+
+	if (message.attachments.size > 0) {
+		let attachments = [];
+		message.attachments.forEach(attachment => {
+			attachments.push(attachment.proxyURL)
+		});
+		logchannel.send({files: attachments})
+	}
 });
 
 bot.on("messageUpdate", (oldMessage, newMessage) => {
