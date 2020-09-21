@@ -126,7 +126,7 @@ bot.on("guildMemberUpdate", (oldMember, newMember) => {
 
 bot.on("messageDelete", message => {
 	if (message.author.bot) return;
-	if (message.guild.cache.id == '') {
+	if (message.guild.id == '661777660229189663') {
 		if (message.attachments.size == 0) return;
 		let attachments = [];
 		message.attachments.forEach((attachment) => {
