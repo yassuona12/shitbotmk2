@@ -44,6 +44,7 @@ bot.on("ready", async message => {
     console.log(e.stack);
   }
 });
+bot.login(process.env.TOKEN).catch(console.error);
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~START COMMANDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
 bot.on("message", async message => {
   if (message.author.bot) return;
@@ -203,4 +204,22 @@ bot.on("message", message => {
   }
 });
 
-bot.login(process.env.TOKEN).catch(console.error);
+
+const embed = new Discord.MessageEmbed()
+    .setTitle('Some Title')
+    .setColor('#0099ff');
+
+bot.once('ready', async () => {
+    const channel = client.channels.cache.get('662913739691130929'); //This is the problem.
+    try {
+        const webhooks = await channel.fetchWebhooks(); //This will not execute because channel is undefined.
+        const webhook = webhooks.first();
+
+        await webhook.send('Webhook test', {
+            username: 'some-username',
+            embeds: [embed],
+        });
+    } catch (error) {
+        console.error('Error trying to send: ', error);
+    }
+});
