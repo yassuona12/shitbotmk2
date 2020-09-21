@@ -85,7 +85,8 @@ bot.on("guildMemberUpdate", (oldMember, newMember) => {
             }
         });
 
-        client.channels.cache.get("743754814403379272").send(Embed);
+        const channel = client.channels.cache.get("743754814403379272")
+        channel.send(Embed);
     } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
         const Embed = new Discord.MessageEmbed()
         .setColor("GREEN")
@@ -95,7 +96,8 @@ bot.on("guildMemberUpdate", (oldMember, newMember) => {
                 Embed.addField("Role Added", role);
             }
         });
-        client.channels.cache.get("743754814403379272").send(Embed);
+        const channel = client.channels.cache.get("743754814403379272")
+        channel.send(Embed);
     }
 });
 
