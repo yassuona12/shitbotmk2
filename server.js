@@ -92,6 +92,23 @@ bot.on("messageDelete", async message => {
   }
 });
 
+client.on("messageUpdate", (oldMessage, newMessage) => {
+	if (oldMessage.author.bot) return;
+	if (oldMessage.content == newMessage.content) return;
+	let logchannel = oldMessage.guild.channels.cache.find(c => c.name === "⌘・bots◟log");
+	if (!logchannel) return;
+	const embed = new Discord.MessageEmbed()
+		.setAuthor(oldMessage.author.tag, oldMessage.author.avatarURL)
+		.setFooter(`Author ID: ${oldMessage.author.id} | Message ID: ${oldMessage.id}`)
+		.setTimestamp(new Date())
+		.setColor("#00cb16")
+		.setTitle("Message edited")
+		.addField("Channel", `${oldMessage.channel} | [Go to message](${oldMessage.url})`)
+		.addField("Old Message", oldMessage.content.substring(0, 1024))
+		.addField("New Message", newMessage.content.substring(0, 1024));
+	logchannel.send(embed)
+});
+
 //WELCOMER & GOODBYE
 bot.on("guildMemberAdd", member => {
 let chx = db.get(`welchannel_${member.guild.id}`); //defining var
@@ -137,21 +154,20 @@ bot.on("message", async message => {
 }
     
 });
-// bot.on("message", message => {
-//   if (message.content.startsWith('j!announce')) {
-//     let rest_of_the_string = message.content.slice('j!announce'.length); //removes the first part
-//     let array_of_arguments = rest_of_the_string.split(',.'); //[title, description, link, image]
+bot.on("message", message => {
+  if (message.content.startsWith('j!announce')) {
+    let before = message.content.slice('j!announce'.length); //removes the first part
+    let after = before.split(',.'); //[title, description, link, image]
 
-//     let embed = new Discord.MessageEmbed()
-//       .setTitle(array_of_arguments[0])
-//       .setDescription(array_of_arguments[1])
-//       .setImage(array_of_arguments[2] || null)
-//       .setThumbnail(message.guild.iconURL({  dynamic: true  }))
-//       .setColor(0x0099ff)
-//       .setFooter("Japanisme Announcement")
-//       .setTimestamp();
-
-//     message.channel.send({ embed });
-//   }
-// });
+    let embed = new Discord.MessageEmbed()
+      .setAuthor('Japanesme Announcement')
+      .setDescription(after[0])
+      .setImage(after[1] || null)
+ //     .setThumbnail(message.guild.iconURL({  dynamic: true  }))
+      .setColor(0x0099ff)
+      .setFooter("Japanisme Announcement")
+      .setTimestamp();
+    message.channel.send({ embed });
+  }
+});
 bot.login(process.env.TOKEN).catch(console.error);

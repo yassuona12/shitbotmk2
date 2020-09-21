@@ -1,16 +1,15 @@
 const Discord = require('discord.js')
 exports.run = async (message, client, args) => {
- // if (!message.member.hasPermission("ADMINISTRATOR")) return;
+  if(!message.members.hasPermission('ADMINISTRATOR')) return;
   let before = args.slice(1).join(' ')
   let after = before.split('/+')
   let embed = new Discord.MessageEmbed()
   .setAuthor('Japanese Announcement')
   .setColor('#FFFF00')
   .setDescription(after[0])
-  .setImage(after[1] || null)
+  .setImage(after[1])
   let channel = message.mentions.channels.first()
-  if(!channel) return message.reply('Mention Channel terlebih dahulu')
-  channel.send(embed)
+  if()
 //     let data = args.join(' ')
 //     let content = data.split(',.') //[title, description, link, image]
 //     let announce = new Discord.MessageEmbed()
