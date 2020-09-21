@@ -210,11 +210,11 @@ const embed = new Discord.MessageEmbed()
 	.setTitle('Some Title')
 	.setColor('#0099ff');
 
-client.once('ready', async () => {
+bot.once('ready', async () => {
 const webhookClient = new Discord.WebhookClient('757566556845637642', 'zuKTFESj0AFKm9Myo-NNSKwm5x3XV46u_MNXxogD7NrdZBIhffIUZ9cmdLCVNqcbvio4');
 
 const embed = new Discord.MessageEmbed()
-	.setTitle('Some Title')
+	.setTitle('Japanisme')
 	.setColor('#0099ff');
 
 webhookClient.send('Webhook test', {
