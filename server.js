@@ -211,17 +211,15 @@ const embed = new Discord.MessageEmbed()
 	.setColor('#0099ff');
 
 client.once('ready', async () => {
-	const channel = client.channels.cache.get('662913739691130929');
-	try {
-		const webhooks = await channel.fetchWebhooks();
-		const webhook = webhooks.first();
+const webhookClient = new Discord.WebhookClient('757566556845637642', 'zuKTFESj0AFKm9Myo-NNSKwm5x3XV46u_MNXxogD7NrdZBIhffIUZ9cmdLCVNqcbvio4');
 
-		await webhook.send('Webhook test', {
-			username: 'some-username',
-			avatarURL: 'https://i.imgur.com/wSTFkRM.png',
-			embeds: [embed],
-		});
-	} catch (error) {
-		console.error('Error trying to send: ', error);
-	}
+const embed = new Discord.MessageEmbed()
+	.setTitle('Some Title')
+	.setColor('#0099ff');
+
+webhookClient.send('Webhook test', {
+	username: 'some-username',
+	avatarURL: 'https://i.imgur.com/wSTFkRM.png',
+	embeds: [embed],
+});
 });
