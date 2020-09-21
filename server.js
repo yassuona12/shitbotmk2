@@ -71,6 +71,35 @@ bot.on("message", async message => {
     }
 });
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LOGS COMMANDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
+//ROle Update
+bot.on("guildMemberUpdate", (oldMember, newMember) => {
+    // Old roles Collection is higher in size than the new one. A role has been removed.
+    if (oldMember.roles.cache.size > newMember.roles.cache.size) {
+        // Creating an embed message.
+        const Embed = new Discord.MessageEmbed()
+        .setColor("RED")
+        .setAuthor(newMember.user.tag, newMember.user.avatarURL());
+        oldMember.roles.cache.forEach(role => {
+            if (!newMember.roles.cache.has(role.id)) {
+                Embed.addField("Role Removed", role);
+            }
+        });
+
+        client.channels.cache.get("743754814403379272").send(Embed);
+    } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
+        const Embed = new Discord.MessageEmbed()
+        .setColor("GREEN")
+        .setAuthor(newMember.user.tag, newMember.user.avatarURL());
+        newMember.roles.cache.forEach(role => {
+            if (!oldMember.roles.cache.has(role.id)) {
+                Embed.addField("Role Added", role);
+            }
+        });
+        client.channels.cache.get("743754814403379272").send(Embed);
+    }
+});
+
+
 //MESSAGE DELETE
 bot.on("messageDelete", async message => {
   const CHANNEL = "⌘・bots◟log";
@@ -170,4 +199,5 @@ bot.on("message", message => {
     message.channel.send({ embed });
   }
 });
+
 bot.login(process.env.TOKEN).catch(console.error);
