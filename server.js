@@ -75,31 +75,32 @@ bot.on("message", async message => {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LOGS COMMANDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
 //ROle Update
 bot.on("guildMemberUpdate", (oldMember, newMember) => {
-    // Old roles Collection is higher in size than the new one. A role has been removed.
-    if (oldMember.roles.cache.size > newMember.roles.cache.size) {
-        // Creating an embed message.
-        const Embed = new Discord.MessageEmbed()
-        .setColor("RED")
-        .setAuthor(newMember.user.tag, newMember.user.avatarURL());
-        oldMember.roles.cache.forEach(role => {
-            if (!newMember.roles.cache.has(role.id)) {
-                Embed.addField("Role Removed", role);
-            }
-        });
+    if (oldMember.guild.id != '661777660229189663') return;
+    if (oldMember.roles.cache.size == newMember.roles.cache.size) return;
+    let guild = client.guilds.get('661777660229189663');
+    let logchannel = guild.channels.cache.get('743754814403379272')
+    const index = Math.floor(Math.random() * (footer.length - 1) + 1);
+    let embed = new Discord.MessgeEmbed()
+                .setFooter("kontol")
+                .setTimestamp();
 
-        const channel = client.channels.cache.get("743754814403379272")
-        channel.send(Embed);
-    } else if (oldMember.roles.cache.size < newMember.roles.cache.size) {
-        const Embed = new Discord.MessageEmbed()
-        .setColor("GREEN")
-        .setAuthor(newMember.user.tag, newMember.user.avatarURL());
-        newMember.roles.cache.forEach(role => {
-            if (!oldMember.roles.cache.has(role.id)) {
-                Embed.addField("Role Added", role);
+    if (oldMember.roles.cache.size > newMember.roles.cache.size) {
+        oldMember.roles.forEach(role => {
+            if (!newMember.roles.cache.get(role.id)) {
+                                embed.setDescription("`" + role.name + "` was removed from " + newMember.user.username);
+                                embed.setColor(role.hexColor)
             }
         });
-        const channel = client.channels.cache.get("743754814403379272")
-        channel.send(Embed);
+        logchannel.send({embed: embed})
+    }
+    else {
+        newMember.roles.forEach(role => {
+            if (!oldMember.roles.cache.get(role.id)) {
+                embed.setDescription("`" + role.name + "` was added to " + newMember.user.username);
+                                embed.setColor(role.hexColor)
+            }
+        });
+        logchannel.send({embed: embed})
     }
 });
 
