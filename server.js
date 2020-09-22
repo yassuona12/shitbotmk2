@@ -77,10 +77,9 @@ bot.on("message", async message => {
 bot.on("guildMemberUpdate", (oldMember, newMember) => {
     if (oldMember.guild.id != '661777660229189663') return;
     if (oldMember.roles.cache.size == newMember.roles.cache.size) return;
-    let guild = client.guilds.get('661777660229189663');
-    let logchannel = guild.channels.cache.get('743754814403379272')
-    const index = Math.floor(Math.random() * (footer.length - 1) + 1);
-    let embed = new Discord.MessgeEmbed()
+    let message;
+    let logchannel = message.guild.channels.cache.find(channel => channel.id === "743754814403379272")
+    let embed = new Discord.MessageEmbed()
                 .setFooter("kontol")
                 .setTimestamp();
 
