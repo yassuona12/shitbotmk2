@@ -13,6 +13,16 @@ module.exports.run = async(bot, message, args) => {
     .setFooter(`❱ ${message.guild.name}`, bot.user.displayAvatarURL())
 
   message.channel.send(helpEmbed);
+let embed = new Discord.MessageEmbed()
+.setAuthor('Japanisme Bot Commands')
+.setDescription('Hai, Saya adalah Official Bot Japanisme. Semoga saya dapat membantu kalian semua. \nBerikut list Command yang saya miliki:')
+.setColor('#0099ff')
+.addField("Moderator Command", `**\`Kick\`  \`Ban\`  \`Mute\`  \`Tempmute\`  \`Clear\`  \`Unban\`  \`Addrole\`  \`Delrole\`**`)
+.addField("General Command",`**\`Help\`  \`Ping\`   \`Userinfo\`  \`Avatar\`  \`Say\`  \`Serverinfo\`  \`Report\`**`)
+.addField("Fun Command",`**\`8ball\`  \`Kiss\`  \`Hug\`  \`Coinflip\`  \`Hello\`**`)
+.setThumbnail(bot.user.displayAvatarURL({})
+.setTimestamp()
+message.channel.send(embed)
 }
 exports.conf = {
     enabled: true,
