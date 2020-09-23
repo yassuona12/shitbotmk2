@@ -18,7 +18,7 @@ module.exports.run = async (client, message, args) => {
     await tokick.kick(reason)
       .then(() => {
         let embed = new Discord.MessageEmbed()
-            .setAuthor(message.author.username, message.author.displayAvatarURL) 
+            .setAuthor(message.author.tag, message.author.displayAvatarURL) 
             .setColor("PURPLE")
             .setTimestamp()
             .setTitle("Kick executed")
