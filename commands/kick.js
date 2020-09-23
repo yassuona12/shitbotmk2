@@ -1,5 +1,5 @@
 let Discord = require('discord.js');
-let botto = require('../botsettings.json');
+
 
 module.exports.run = (client, message, args) => {
     if (message.channel instanceof Discord.DMChannel) return message.channel.send("This command is not avaiable in DMs");
@@ -9,7 +9,7 @@ module.exports.run = (client, message, args) => {
     let logchannel = message.guild.channels.cache.find(c => c.name === "⌘・bots◟log");
     if (!logchannel) return;
 
-    let tokick = message.mentions.users.first()
+    let tokick = message.mentions.members.first()
     if (!tokick) return message.channel.send("❎ **| I can't find the user. Can you make sure you have entered a correct one?**");
 
     let reason = args.slice(1).join(" ");
@@ -28,12 +28,7 @@ module.exports.run = (client, message, args) => {
     })
 };
 
-module.exports.config = {
-    description: "Kicks a user.",
-    usage: "kick <user> [reason]",
-    detail: "`user`: The user to kick [UserResolvable (mention or user ID)]\n`reason`: Reason for kicking [String]",
-    permission: "Moderator"
-};
+
 
 module.exports.help = {
     name: "kick"
