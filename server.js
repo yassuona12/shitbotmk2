@@ -5,7 +5,6 @@ const request = require("request");
 const client = new Discord.Client({disableEveryone : true});
 const prefix = botSettings.prefix;
 const db = require("quick.db")
-const messageLog = new Discord.WebhookClient(process.env.WEBHOOK_ID, process.env.WEBHOOK_TOKEN)
 
 const bot = new Discord.Client({ disableEveryone: true });
 bot.commands = new Discord.Collection();
