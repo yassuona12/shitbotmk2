@@ -74,7 +74,7 @@ bot.on("message", async message => {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LOGS COMMANDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
 //ROle Update
 bot.on("guildMemberUpdate", (oldMember, newMember) => {
-    if (oldMember.guild.cache.get = '661777660229189663') return;
+    if (oldMember.guild.id =!'661777660229189663') return;
     if (oldMember.roles.cache.size == newMember.roles.cache.size) return;
     let message;
     let logchannel = message.guild.channels.cache.find(channel => channel.id === "743754814403379272")
@@ -162,24 +162,14 @@ let chx = db.get(`welchannel_${member.guild.id}`); //defining var
 });
 
 bot.on("guildMemberRemove", member => {
-  let universCafe = bot.guilds.cache.get("661777660229189663");
-  let memberCount = universCafe.memberCount;
-  let memberCountChannel = universCafe.channels.cache.get("752409981730422915");
-  memberCountChannel
-    .setName(`Users count : ` + memberCount)
+  let japs = bot.guilds.cache.get("661777660229189663");
+  let memberCount = japs.memberCount;
+  let japscount = japs.channels.cache.get("752409981730422915");
+  japscount.setName(`Users count : ` + memberCount)
     .then(result => console.log(result))
     .catch(error => console.log(error));
 });
 
-bot.on("guildMemberAdd", member => {
-  let Japanisme = bot.guilds.cache.get("661777660229189663");
-  let memberCount = Japanisme.memberCount;
-  let MemCountCh = Japanisme.channels.cache.get("752409981730422915");
-  MemCountCh.setName(`Users count :` + memberCount)
-  .then(result => console.log(result))
-  .catch(error => console.log(error))
-
-});
 
 bot.on("message", async message => {
   if (message.content.startsWith("raven ganteng"))
@@ -196,6 +186,8 @@ bot.on("message", async message => {
 }
     
 });
+
+//---------------------------------//dev fun auto reply message\\---------------------
 bot.on("message", message => {
   if (message.content.startsWith('j!announce')) {
     let before = message.content.slice('j!announce'.length); //removes the first part
