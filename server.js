@@ -34,7 +34,7 @@ bot.on("ready", async message => {
   );
 
   bot.user.setStatus("Online");
-  bot.user.setActivity(`with ${bot.users.cache.size} Members | j!help`);
+  bot.user.setActivity(`${bot.users.cache.size} Members  | j!help`);
 
   try {
     let link = await bot.generateInvite(["ADMINISTRATOR"]);
