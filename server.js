@@ -74,7 +74,7 @@ bot.on("message", async message => {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LOGS COMMANDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
 //ROle Update
 bot.on("guildMemberUpdate", (oldMember, newMember) => {
-    if (oldMember.guild.id != '661777660229189663') return;
+    if (oldMember.guild.cache.get = '661777660229189663') return;
     if (oldMember.roles.cache.size == newMember.roles.cache.size) return;
     let message;
     let logchannel = message.guild.channels.cache.find(channel => channel.id === "743754814403379272")
@@ -170,9 +170,16 @@ bot.on("guildMemberRemove", member => {
     .then(result => console.log(result))
     .catch(error => console.log(error));
 });
+
 bot.on("guildMemberAdd", member => {
   let Japanisme = bot.guilds.cache.get("661777660229189663");
-  let memberCount = Japa
+  let memberCount = Japanisme.memberCount;
+  let MemCountCh = Japanisme.channels.cache.get("752409981730422915");
+  MemCountCh.setName(`Users count :` + memberCount)
+  .then(result => console.log(result))
+  .catch(error => console.log(error))
+
+});
 
 bot.on("message", async message => {
   if (message.content.startsWith("raven ganteng"))
