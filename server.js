@@ -170,6 +170,9 @@ bot.on("guildMemberRemove", member => {
     .then(result => console.log(result))
     .catch(error => console.log(error));
 });
+bot.on("guildMemberAdd", member => {
+  let Japanisme = bot.guilds.cache.get("661777660229189663");
+  let memberCount = Japa
 
 bot.on("message", async message => {
   if (message.content.startsWith("raven ganteng"))
