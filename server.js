@@ -170,9 +170,9 @@ bot.on("guildMemberRemove", member => {
     .catch(error => console.log(error));
 });
 
-
+//-------------------------//dev only\\----------------------\\
 bot.on("message", async message => {
-  if (message.content.startsWith("orchit gay"))
+  if (message.content.startsWith("raven ganteng"))
     return message.channel.send("betul",{
       files: [
         "https://cdn.discordapp.com/attachments/454699750336364554/753616779569528842/images_-_2020-09-10T220339.844.jpeg"
@@ -188,7 +188,7 @@ bot.on("message", async message => {
     
 });
 
-//---------------------------------//dev fun auto reply message\\---------------------
+
 bot.on("message", message => {
   if (message.content.startsWith('j!announce')) {
     let before = message.content.slice('j!announce'.length); //removes the first part
