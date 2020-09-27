@@ -1,8 +1,9 @@
 const Discord = require('discord.js')
+const botSettings = require("../botsettings.json")
 exports.run = async (client, message, args) => {
   let embed = new Discord.MessageEmbed()
   .setAuthor('Japanisme Bot Development')
-  .setDescription(`<@Rapentot> <@Orchit> `)
+  .setDescription(`${botSettings.dev1} ${botSettings.dev2}`)
   message.channel.send(embed)
   }
 
