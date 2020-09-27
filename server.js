@@ -207,14 +207,6 @@ bot.on("message", message => {
 });
 
 
-bot.on("message", msg => {
-  if(msg.content.startsWith("j!botdev")) return
-  const emb = new Discord.MessageEmbed()
-  .setTitle("Japanisme Bot Dev")
-  .addField("Dev 1", `${botSettings.dev1} /n ${botSettings.dev2}`)
-  .setColor("CYAN")
-  msg.channel.send(emb)
-});
 
 
 //const embed = new Discord.MessageEmbed()
