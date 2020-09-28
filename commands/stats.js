@@ -5,7 +5,7 @@ const moment = require("moment")
 module.exports = {
   name: 'stats',
   async run (bot, message, args) {
-        if(message.author.id !== '243728573624614912') return message.reply('Untuk sementara command ini hanya untuk developer')
+        if(message.author.id !== '243728573624614912')return message.reply('Untuk sementara command ini hanya untuk developer')
 
             let { version } = require("discord.js");
      
