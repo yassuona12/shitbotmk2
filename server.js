@@ -162,11 +162,10 @@ channel.send(embed)
 });
 
 bot.on("guildMemberRemove", member => {
-  let japs = member.guilds.cache.get("661777660229189663");
+  let japs = bot.guilds.cache.get("661777660229189663");
   let memberCount = japs.memberCount;
   let japscount = japs.channels.cache.get("752409981730422915");
   japscount.setName(`Users count : ` + memberCount)
-    .then(result => console.log(result))
     .catch(error => console.log(error));
 });
 
