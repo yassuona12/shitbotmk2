@@ -73,34 +73,34 @@ bot.on("message", async message => {
 });
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LOGS COMMANDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
 //ROle Update
-bot.on("guildMemberUpdate", (oldMember, newMember) => {
-    if (oldMember.guilds.cache.get =!'661777660229189663') return;
-    if (oldMember.roles.cache.size == newMember.roles.cache.size) return;
-    let message;
-    let logchannel = message.guild.channels.cache.find(channel => channel.id === "743754814403379272")
-    let embed = new Discord.MessageEmbed()
-                .setFooter("kontol")
-                .setTimestamp();
+// bot.on("guildMemberUpdate", (oldMember, newMember) => {
+//     if (oldMember.guilds.cache.get =!'661777660229189663') return;
+//     if (oldMember.roles.cache.size == newMember.roles.cache.size) return;
+//     let message;
+//     let logchannel = message.guild.channels.cache.find(channel => channel.id === "743754814403379272")
+//     let embed = new Discord.MessageEmbed()
+//                 .setFooter("kontol")
+//                 .setTimestamp();
 
-    if (oldMember.roles.cache.size > newMember.roles.cache.size) {
-        oldMember.roles.forEach(role => {
-            if (!newMember.roles.cache.get(role.id)) {
-                                embed.setDescription("`" + role.name + "` was removed from " + newMember.user.username);
-                                embed.setColor(role.hexColor)
-            }
-        });
-        logchannel.send({embed: embed})
-    }
-    else {
-        newMember.roles.forEach(role => {
-            if (!oldMember.roles.cache.get(role.id)) {
-                embed.setDescription("`" + role.name + "` was added to " + newMember.user.username);
-                                embed.setColor(role.hexColor)
-            }
-        });
-        logchannel.send({embed: embed})
-    }
-});
+//     if (oldMember.roles.cache.size > newMember.roles.cache.size) {
+//         oldMember.roles.forEach(role => {
+//             if (!newMember.roles.cache.get(role.id)) {
+//                                 embed.setDescription("`" + role.name + "` was removed from " + newMember.user.username);
+//                                 embed.setColor(role.hexColor)
+//             }
+//         });
+//         logchannel.send({embed: embed})
+//     }
+//     else {
+//         newMember.roles.forEach(role => {
+//             if (!oldMember.roles.cache.get(role.id)) {
+//                 embed.setDescription("`" + role.name + "` was added to " + newMember.user.username);
+//                                 embed.setColor(role.hexColor)
+//             }
+//         });
+//         logchannel.send({embed: embed})
+//     }
+// });
 
 
 //MESSAGE DELETE
@@ -153,11 +153,10 @@ let chx = db.get(`welchannel_${member.guild.id}`); //defining var
 .setColor(0x0099ff)
 .setAuthor(`Japanisme Welcome Message`, member.guild.iconURL({dynamic: true}))
 .setTitle(`Selamat datang diserver ${member.guild.name}`)
-.setDescription(`Hai <@${member.id}>, Selamat datang di **__Japanisme__**. Sebelum itu, Silahkan lihat - lihat channel di kategori ──• DASBOARD •──\n Jika butuh bantuan, silahkan mention staff yang sedang online. Terimakasih`)
+.setDescription(`**Hai <@${member.id}>\nSelamat datang diserver __[Japanisme](https://discord.gg/BxTcJSS)__. Sebelum itu, Silahkan lihat - lihat channel di kategori [──• DASBOARD •──]\n Jika butuh bantuan, silahkan mention staff yang sedang online. Terimakasih**`)
 .setThumbnail(member.user.avatarURL({dynamic:true, size:512}))
 .setImage("https://cdn.discordapp.com/attachments/468791184236740621/756570948047601934/tenor.gif")
-.setFooter(`${member.tag}, kamu member ke ${member.guild.members.cache.filter(member => !member.user.bot).size}`)
-.setTimestamp()
+.setFooter(`Selamat Datang ${member.user.tag}, kamu member ke ${member.guild.members.cache.filter(member => !member.user.bot).size}`)
 const channel = member.guild.channels.cache.get(chx)
 channel.send(embed)
 });
