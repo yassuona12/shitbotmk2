@@ -1,4 +1,4 @@
-const Discord = require("discord.js")
+  const Discord = require("discord.js")
 const os = require('os')
 const cpuStat = require("cpu-stat");
 const moment = require("moment") 
