@@ -153,7 +153,7 @@ let chx = db.get(`welchannel_${member.guild.id}`); //defining var
 .setColor(0x0099ff)
 .setAuthor(`Japanisme Welcome Message`, member.guild.iconURL({dynamic: true}))
 .setTitle(`Selamat datang diserver ${member.guild.name}`)
-.setDescription(`**Hai <@${member.id}>\nSelamat datang diserver __[Japanisme](https://discord.gg/BxTcJSS)__. Sebelum itu, Silahkan lihat - lihat channel di kategori [──• DASBOARD •──]\n Jika butuh bantuan, silahkan mention staff yang sedang online. Terimakasih**`)
+.setDescription(`**Hai <@${member.id}>\nSelamat datang diserver __[Japanisme](https://discord.gg/BxTcJSS)__. Sebelum itu, Silahkan lihat - lihat channel di kategori \n[──• DASBOARD •──]\n Jika butuh bantuan, silahkan mention staff yang sedang online. Terimakasih**`)
 .setThumbnail(member.user.avatarURL({dynamic:true, size:512}))
 .setImage("https://cdn.discordapp.com/attachments/468791184236740621/756570948047601934/tenor.gif")
 .setFooter(`Selamat Datang ${member.user.tag}, kamu member ke ${member.guild.members.cache.filter(member => !member.user.bot).size}`)
