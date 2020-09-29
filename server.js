@@ -164,16 +164,12 @@ channel.send(embed)
 
 bot.on("guildMemberAdd", member => {
   let memberCount = member.guild.members.cache.filter(member => !member.user.bot).size
-  let japscount = member.guild.channels.cache.get("752409981730422915");
-  japscount.setName(`Users count : ` + memberCount)
-    .catch(error => console.log(error));
+  let japscount = member.guild.channels.cache.get("752409981730422915").setName(`Users count : ` + memberCount)
 });
 
 bot.on("guildMemberRemove", member => {
   let memberCount = member.guild.members.cache.filter(member => !member.user.bot).size
-  let japscount = member.guild.channels.cache.get("752409981730422915");
-  japscount.setName(`Users count : ` + memberCount)
-    .catch(error => console.log(error));
+  let japscount = member.guild.channels.cache.get("752409981730422915").setName(`Users count : ` + memberCount)
 });
 //-------------------------//dev only\\----------------------\\
 bot.on("message", async message => {
