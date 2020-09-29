@@ -149,16 +149,17 @@ let chx = db.get(`welchannel_${member.guild.id}`); //defining var
     return;
   }
 
-  let wembed = new Discord.MessageEmbed() //define embed
-  .setColor("#0099ff")
-  .setAuthor(`Selamat Datang di ${member.guild.name}`, member.guild.iconURL({  dynamic: true  }))
-  .setThumbnail(member.user.avatarURL({  dynamic: true, size: 512}  ))
-  .setImage("https://cdn.discordapp.com/attachments/468791184236740621/756570948047601934/tenor.gif")
-  .setDescription(`**Hai** <@${member.id}> **Selamat datang di server \n${member.guild.name}.\n\nSebelum itu, silahkan lihat dulu channel** \n<#662721859481108490> <#744568027189608568> <#741726803613188106> \n<#662722010450755604> <#752149490642976838>\n **Jika bingung bisa tag** <@&662740013582254121> **\natau member yang sedang online.\n __Salam Japanisme__**`)
-  .setTimestamp()
-  
-  const channel = member.guild.channels.cache.get(chx)
-  channel.send(wembed)
+  let embed = new Discord.MessageEmbed()
+.setColor(0x0099ff)
+.setAuthor(`Japanisme Welcome Message`, member.guild.iconURL({dynamic: true}))
+.setTitle(`Selamat datang diserver ${member.guild.name}`)
+.setDescription(`Hai <@${member.id}>, Selamat datang di **__Japanisme__**. Sebelum itu, Silahkan lihat - lihat channel di kategori ──• DASBOARD •──\n Jika butuh bantuan, silahkan mention staff yang sedang online. Terimakasih`)
+.setThumbnail(member.user.avatarURL({dynamic:true, size:512}))
+.setImage("https://cdn.discordapp.com/attachments/468791184236740621/756570948047601934/tenor.gif")
+.setFooter(`${member.tag}, kamu member ke ${member.guild.members.cache.filter(member => !member.user.bot).size}`)
+.setTimestamp()
+const channel = member.guild.channels.cache.get(chx)
+channel.send(embed)
 });
 
 bot.on("guildMemberRemove", member => {
