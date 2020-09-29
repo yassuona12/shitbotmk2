@@ -74,7 +74,7 @@ bot.on("message", async message => {
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~LOGS COMMANDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
 //ROle Update
 bot.on("guildMemberUpdate", (oldMember, newMember) => {
-    if (oldMember.guild.id =!'661777660229189663') return;
+    if (oldMember.guilds.cache.get =!'661777660229189663') return;
     if (oldMember.roles.cache.size == newMember.roles.cache.size) return;
     let message;
     let logchannel = message.guild.channels.cache.find(channel => channel.id === "743754814403379272")
