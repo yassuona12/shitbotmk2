@@ -161,14 +161,20 @@ const channel = member.guild.channels.cache.get(chx)
 channel.send(embed)
 });
 
-bot.on("guildMemberRemove", member => {
-  let japs = bot.guilds.cache.get("661777660229189663");
-  let memberCount = japs.memberCount;
-  let japscount = japs.channels.cache.get("752409981730422915");
+
+bot.on("guildMemberAdd", member => {
+  let memberCount = member.guild.members.cache.filter(member => !member.user.bot).size
+  let japscount = member.guild.channels.cache.get("752409981730422915");
   japscount.setName(`Users count : ` + memberCount)
     .catch(error => console.log(error));
 });
 
+bot.on("guildMemberRemove", member => {
+  let memberCount = member.guild.members.cache.filter(member => !member.user.bot).size
+  let japscount = member.guild.channels.cache.get("752409981730422915");
+  japscount.setName(`Users count : ` + memberCount)
+    .catch(error => console.log(error));
+});
 //-------------------------//dev only\\----------------------\\
 bot.on("message", async message => {
   if (message.content.startsWith("raven ganteng"))
