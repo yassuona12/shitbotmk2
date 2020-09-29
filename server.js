@@ -142,7 +142,7 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
 });
 
 //WELCOMER & GOODBYE
-bot.on("guildMemberAdd", member => {
+bot.on("guildMemberAdd", async member => {
 let chx = db.get(`welchannel_${member.guild.id}`); //defining var
   
   if(chx === null) { //check if var have value or not
@@ -162,14 +162,16 @@ channel.send(embed)
 });
 
 
-bot.on("guildMemberAdd", member => {
+bot.on("guildMemberAdd", async member => {
   let memberCount = member.guild.members.cache.filter(member => !member.user.bot).size
-  let japscount = member.guild.channels.cache.get("752409981730422915").setName(`Users count : ` + memberCount)
+  let japscount = member.guild.channels.cache.get("752409981730422915")
+  await japscount.setName(`Users count : ` + memberCount)
 });
 
-bot.on("guildMemberRemove", member => {
+bot.on("guildMemberRemove", async member => {
   let memberCount = member.guild.members.cache.filter(member => !member.user.bot).size
-  let japscount = member.guild.channels.cache.get("752409981730422915").setName(`Users count : ` + memberCount)
+  let japscount = member.guild.channels.cache.get("752409981730422915")
+  await japscount.setName(`Users count : ` + memberCount)
 });
 //-------------------------//dev only\\----------------------\\
 bot.on("message", async message => {
