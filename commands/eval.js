@@ -1,12 +1,15 @@
 const Discord = require('discord.js')
 const db = require('quick.db')
-let config = require('../config.json')
+let config = require('../botsettings.json')
 module.exports.run = async (client, message, song) => {
-    if(
-    message.author.id !== config.id1 &&
-      message.author.id !== config.id2
-    ) return message.channel.send('Kamu bukan developer, hanya developer yang dapat menggunakan command ini')
-  message.delete()
+if (
+      message.author.id !== config.id1 &&
+      message.author.id !== config.id2 &&
+      message.author.id !== config.owner3 &&
+      message.author.id !== config.owner4
+      //tambahin sendiri klo mo lebih bnyak
+    )
+      return;  message.delete()
     const args = message.content.split(" ").slice(1);
   try {
     function clean(text) {
