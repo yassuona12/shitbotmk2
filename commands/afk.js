@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+  const Discord = require('discord.js');
 let db = require('quick.db')
 
 exports.run = async (client, message, args) => {
@@ -10,9 +10,6 @@ exports.run = async (client, message, args) => {
         let reason = args.join(' ').toString();
 
         if (!afk) {
-          const embed = new Discord.Message.Embed()
-          .setTitle('Afk')
-          .setDescrip
             message.channel.send(`**${message.author.tag}** telah AFK! \n**Alasan:** ${reason ? reason : "AFK"}`, { disableMentions: 'all' })
             setTimeout(() => {
                 status.set(message.author.id, { alasan: reason || 'AFK' });
@@ -31,9 +28,15 @@ exports.run = async (client, message, args) => {
 };
 
 
+
+exports.conf = {
+    aliases: ["away"],
+    cooldown: 10
+}
+
 exports.help = {
     name: 'afk',
-    description: 'afk user',
-    usage: 'j!afk',
-    example: 'j!afk @Orchitngentot'
+    description: 'menambahkan status afk pada user',
+    usage: 'k!avatar',
+    example: 'j!afk orchit ngentot'
 }
