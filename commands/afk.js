@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
         let reason = args.join(' ').toString();
 
         if (!afk) {
-            message.channel.send(`**${message.author.tag}** telah AFK! \n**Alasan:** ${reason ? reason : "AFK"}`, { disableMentions: 'all' })
+            message.channel.send( `**${message.author.tag}** telah AFK! \n**Alasan:** ${reason ? reason : "AFK"}`, { disableMentions: 'all' })
             setTimeout(() => {
                 status.set(message.author.id, { alasan: reason || 'AFK' });
                 status.add(`${message.author.id}.time`, Date.now());
