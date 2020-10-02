@@ -211,8 +211,9 @@ bot.on("message", message => {
 });
 
 
-bot.on('message', async(message) => {
-  if(message.author.id === '673362753489993749') {
-    return message.chan
-  }
-})
+// bot.on('message', async(message) => {
+//   if(message.author.id === '673362753489993749') {
+//     return message.channel.send('25 Detik lagi')
+//     .then((msg)=> {setTimeout(function(){msg.edit('15 Detik lagi');}, 10000)})
+//   }
+// })
