@@ -211,24 +211,8 @@ bot.on("message", message => {
 });
 
 
-
-
-//const embed = new Discord.MessageEmbed()
-// 	.setTitle('Some Title')
-// 	.setColor('#0099ff');
-
-// bot.once('ready', async () => {
-// 	const channel = bot.channels.cache.get('743754814403379272');
-// 	try {
-// 		const webhooks = await channel.fetchWebhooks();
-// 		const webhook = webhooks.first();
-
-// 		await webhook.send('Webhook test', {
-// 			username: 'some-username',
-// 			avatarURL: 'https://i.imgur.com/wSTFkRM.png',
-// 			embeds: [embed],
-// 		});
-// 	} catch (error) {
-// 		console.error('Error trying to send: ', error);
-// 	}
-// });
+bot.on('message', async(message) => {
+  if(message.author.id === '673362753489993749') {
+    return message.chan
+  }
+})
