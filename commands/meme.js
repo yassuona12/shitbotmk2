@@ -13,7 +13,7 @@ module.exports.run = async (bot, message, args) => {
         let memeNumComments = content[0].data.children[0].data.num_comments;
         embed.setTitle(`${memeTitle}`);
         embed.setURL(`${memeUrl}`)
-        embed.setColor('RANDOM')
+        embed.setColor('#FF5700')
         embed.setImage(memeImage);
         embed.setFooter(`👍 ${memeUpvotes} 💬 ${memeNumComments}`);
         embed.setTimestamp()
