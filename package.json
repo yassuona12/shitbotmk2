@@ -5,9 +5,9 @@
   "name": "hello-express",
   "version": "0.0.1",
   "description": "A simple Node app built on Express, instantly up and running.",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "dependencies": {
     "discord.js": "^12.4.0",
@@ -21,7 +21,8 @@
     "yargs-parser": "^20.2.1",
     "axios": "^0.21.0",
     "got": "^11.7.0",
-    "cpu-stat": "^2.0.1"
+    "cpu-stat": "^2.0.1",
+    "node-fetch": "^2.6.1"
   },
   "engines": {
     "node": "12.x"

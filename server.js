@@ -36,12 +36,6 @@ bot.on("ready", async message => {
   bot.user.setStatus("Online");
   bot.user.setActivity(`${bot.users.cache.size} Members  | j!help`);
 
-  try {
-    let link = await bot.generateInvite(["ADMINISTRATOR"]);
-    console.log(link);
-  } catch (e) {
-    console.log(e.stack);
-  }
 });
 bot.login(process.env.TOKEN).catch(console.error);
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~START COMMANDS~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\\
