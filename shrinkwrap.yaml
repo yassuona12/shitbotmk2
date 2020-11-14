@@ -1,17 +1,16 @@
 dependencies:
-  axios: 0.21.0
+  axios: 0.20.0
   cpu-stat: 2.0.1
-  discord.js: 12.4.1
+  discord.js: 12.3.1
   fs: 0.0.2
   got: 11.7.0
-  moment: 2.29.1
-  node-fetch: 2.6.1
+  moment: 2.28.0
   os: 0.1.1
   quick.db: 7.1.2
   request: 2.88.2
   string-template: 1.0.0
   superagent: 6.1.0
-  yargs-parser: 20.2.3
+  yargs-parser: 20.2.0
 packages:
   /@discordjs/collection/0.1.6:
     dev: false
@@ -134,12 +133,12 @@ packages:
     dev: false
     resolution:
       integrity: sha512-zg7Hz2k5lI8kb7U32998pRRFin7zJlkfezGJjUc2heaD4Pw2wObakCDVzkKztTm/Ln7eiVvYsjqak0Ed4LkMDA==
-  /axios/0.21.0:
+  /axios/0.20.0:
     dependencies:
       follow-redirects: 1.13.0
     dev: false
     resolution:
-      integrity: sha512-fmkJBknJKoZwem3/IKSSLpkdNXZeBu5Q7GA/aRsr2btgrptmSCxi2oFjZHqGdK9DoTil9PIHlPIZw2EcRJXRvw==
+      integrity: sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==
   /base64-js/1.3.1:
     dev: false
     resolution:
@@ -308,7 +307,7 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
-  /discord.js/12.4.1:
+  /discord.js/12.3.1:
     dependencies:
       '@discordjs/collection': 0.1.6
       '@discordjs/form-data': 3.0.1
@@ -322,7 +321,7 @@ packages:
     engines:
       node: '>=12.0.0'
     resolution:
-      integrity: sha512-KxOB8LOAN3GmrvkD6a6Fr1nlfArIFZ+q7Uqg4T/5duB90GZy9a0/Py2E+Y+eHKP6ZUCR2mbNMLCcHGjahiaNqA==
+      integrity: sha512-mSFyV/mbvzH12UXdS4zadmeUf8IMQOo/YdunubG1wWt1xjWvtaJz/s9CGsFD2B5pTw1W/LXxxUbrQjIZ/xlUdw==
   /ecc-jsbn/0.1.2:
     dependencies:
       jsbn: 0.1.1
@@ -687,10 +686,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-NKmAlESf6jMGym1++R0Ra7wvhV+wFW63FaSOFPwRahvea0gMUcGUhVeAg/0BC0wiv9ih5NYPB1Wn1UEI1/L+xQ==
-  /moment/2.29.1:
+  /moment/2.28.0:
     dev: false
     resolution:
-      integrity: sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
+      integrity: sha512-Z5KOjYmnHyd/ukynmFd/WwyXHd7L4J9vTI/nn5Ap9AVUgaAE15VvQ9MOGmJJygEUklupqIrFnor/tjTwRU+tQw==
   /ms/2.1.2:
     dev: false
     resolution:
@@ -1164,26 +1163,25 @@ packages:
     dev: false
     resolution:
       integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==
-  /yargs-parser/20.2.3:
+  /yargs-parser/20.2.0:
     dev: false
     engines:
       node: '>=10'
     resolution:
-      integrity: sha512-emOFRT9WVHw03QSvN5qor9QQT9+sw5vwxfYweivSMHTcAXPefwVae2FjO7JJjj8hCE4CzPOPeFM83VwT29HCww==
+      integrity: sha512-2agPoRFPoIcFzOIp6656gcvsg2ohtscpw2OINr/q46+Sq41xz2OYLqx5HRHabmFU1OARIPAYH5uteICE7mn/5A==
 registry: 'https://registry.npmjs.org/'
 shrinkwrapMinorVersion: 9
 shrinkwrapVersion: 3
 specifiers:
-  axios: ^0.21.0
+  axios: ^0.20.0
   cpu-stat: ^2.0.1
-  discord.js: ^12.4.0
+  discord.js: ^12.3.1
   fs: ^0.0.2
   got: ^11.7.0
-  moment: ^2.29.1
-  node-fetch: ^2.6.1
+  moment: ^2.28.0
   os: ^0.1.1
   quick.db: ^7.1.2
   request: ^2.88.2
   string-template: ^1.0.0
   superagent: ^6.1.0
-  yargs-parser: ^20.2.1
+  yargs-parser: ^20.2.0
