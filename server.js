@@ -1,10 +1,32 @@
-const Discord = require('discord.js');
+const Discord = require("discord.js");
 const botSettings = require("./botsettings.json");
 const fs = require("fs");
 const request = require("request");
-const client = new Discord.Client({disableEveryone : true});
+const client = new Discord.Client({
+  disableMentions: "everyone",
+  messageCacheMaxSize: Infinity,
+  messageCacheLifetime: 540,
+  messageSweepInterval: 180,
+  ws: {
+    intents: [
+      "GUILDS",
+      "GUILD_MEMBERS",
+      "GUILD_BANS",
+      "GUILD_EMOJIS",
+      "GUILD_INVITES",
+      "GUILD_VOICE_STATES",
+      "GUILD_PRESENCES",
+      "GUILD_MESSAGES",
+      "GUILD_MESSAGE_REACTIONS",
+      "GUILD_MESSAGE_TYPING",
+      "DIRECT_MESSAGES",
+      "DIRECT_MESSAGE_REACTIONS",
+      "DIRECT_MESSAGE_TYPING"
+    ]
+  }
+});
 const prefix = botSettings.prefix;
-const db = require("quick.db")
+const db = require("quick.db");
 
 const bot = new Discord.Client({ disableEveryone: true });
 bot.commands = new Discord.Collection();
@@ -102,14 +124,13 @@ bot.on("message", async message => {
 //     }
 // });
 
-
 //MESSAGE DELETE
 bot.on("messageDelete", async message => {
   const CHANNEL = "⌘・bots◟log";
   if (message.channel.type == "text") {
     var logger = message.guild.channels.cache.find(
-     channel => channel.name === CHANNEL
-   );
+      channel => channel.name === CHANNEL
+    );
     if (logger) {
       const embed = new Discord.MessageEmbed()
         .setColor("#0099ff")
@@ -120,96 +141,114 @@ bot.on("messageDelete", async message => {
         .setTimestamp()
         .setFooter("log", message.guild.iconURL);
       logger.send({ embed });
-   }
-}
+    }
+  }
 });
 
 bot.on("messageUpdate", (oldMessage, newMessage) => {
-	if (oldMessage.author.bot) return;
-	if (oldMessage.content == newMessage.content) return;
-	let logchannel = oldMessage.guild.channels.cache.find(c => c.name === "⌘・bots◟log");
-	if (!logchannel) return;
-	const embed = new Discord.MessageEmbed()
-		.setAuthor(oldMessage.author.tag, oldMessage.author.displayAvatarURL())
-		.setFooter(`Author ID: ${oldMessage.author.id} | Message ID: ${oldMessage.id}`)
-		.setTimestamp(new Date())
-		.setColor("#00cb16")
-		.setTitle("Message edited")
-		.addField("Channel", `${oldMessage.channel} | [Go to message](${oldMessage.url})`)
-		.addField("Old Message", oldMessage.content.substring(0, 1024))
-		.addField("New Message", newMessage.content.substring(0, 1024));
-	logchannel.send(embed)
+  if (oldMessage.author.bot) return;
+  if (oldMessage.content == newMessage.content) return;
+  let logchannel = oldMessage.guild.channels.cache.find(
+    c => c.name === "⌘・bots◟log"
+  );
+  if (!logchannel) return;
+  const embed = new Discord.MessageEmbed()
+    .setAuthor(oldMessage.author.tag, oldMessage.author.displayAvatarURL())
+    .setFooter(
+      `Author ID: ${oldMessage.author.id} | Message ID: ${oldMessage.id}`
+    )
+    .setTimestamp(new Date())
+    .setColor("#00cb16")
+    .setTitle("Message edited")
+    .addField(
+      "Channel",
+      `${oldMessage.channel} | [Go to message](${oldMessage.url})`
+    )
+    .addField("Old Message", oldMessage.content.substring(0, 1024))
+    .addField("New Message", newMessage.content.substring(0, 1024));
+  logchannel.send(embed);
 });
 
 //WELCOMER & GOODBYE
 bot.on("guildMemberAdd", async member => {
-let chx = db.get(`welchannel_${member.guild.id}`); //defining var
-  
-  if(chx === null) { //check if var have value or not
+  let chx = db.get(`welchannel_${member.guild.id}`); //defining var
+
+  if (chx === null) {
+    //check if var have value or not
     return;
   }
 
   let embed = new Discord.MessageEmbed()
-.setColor(0x0099ff)
-.setAuthor(`Japanisme Welcome Message`, member.guild.iconURL({dynamic: true}))
-.setTitle(`Selamat datang diserver ${member.guild.name}`)
-.setDescription(`**Hai <@${member.id}>\nSelamat datang diserver __[Japanisme](https://discord.gg/BxTcJSS)__. Sebelum itu, Silahkan lihat - lihat channel di kategori \n[──• DASBOARD •──]\n Jika butuh bantuan, silahkan mention staff yang sedang online. Terimakasih**`)
-.setThumbnail(member.user.avatarURL({dynamic:true, size:512}))
-.setImage("https://cdn.discordapp.com/attachments/468791184236740621/756570948047601934/tenor.gif")
-.setFooter(`Selamat Datang ${member.user.tag}, kamu member ke ${member.guild.members.cache.filter(member => !member.user.bot).size}`)
-const channel = member.guild.channels.cache.get(chx)
-channel.send(embed)
+    .setColor(0x0099ff)
+    .setAuthor(
+      `Japanisme Welcome Message`,
+      member.guild.iconURL({ dynamic: true })
+    )
+    .setTitle(`Selamat datang diserver ${member.guild.name}`)
+    .setDescription(
+      `**Hai <@${member.id}>\nSelamat datang diserver __[Japanisme](https://discord.gg/BxTcJSS)__. Sebelum itu, Silahkan lihat - lihat channel di kategori \n[──• DASBOARD •──]\n Jika butuh bantuan, silahkan mention staff yang sedang online. Terimakasih**`
+    )
+    .setThumbnail(member.user.avatarURL({ dynamic: true, size: 512 }))
+    .setImage(
+      "https://cdn.discordapp.com/attachments/468791184236740621/756570948047601934/tenor.gif"
+    )
+    .setFooter(
+      `Selamat Datang ${member.user.tag}, kamu member ke ${
+        member.guild.members.cache.filter(member => !member.user.bot).size
+      }`
+    );
+  const channel = member.guild.channels.cache.get(chx);
+  channel.send(embed);
 });
 
-
 bot.on("guildMemberAdd", async member => {
-  let memberCount = member.guild.members.cache.filter(member => !member.user.bot).size
-  let japscount = member.guild.channels.cache.get("752409981730422915")
-  await japscount.setName(`Users count : ` + memberCount)
+  let memberCount = member.guild.members.cache.filter(
+    member => !member.user.bot
+  ).size;
+  let japscount = member.guild.channels.cache.get("752409981730422915");
+  await japscount.setName(`Users count : ` + memberCount);
 });
 
 bot.on("guildMemberRemove", async member => {
-  let memberCount = member.guild.members.cache.filter(member => !member.user.bot).size
-  let japscount = member.guild.channels.cache.get("752409981730422915")
-  await japscount.setName(`Users count : ` + memberCount)
+  let memberCount = member.guild.members.cache.filter(
+    member => !member.user.bot
+  ).size;
+  let japscount = member.guild.channels.cache.get("752409981730422915");
+  await japscount.setName(`Users count : ` + memberCount);
 });
 //-------------------------//dev only\\----------------------\\
 bot.on("message", async message => {
   if (message.content.startsWith("raven ganteng"))
-    return message.channel.send("betul",{
+    return message.channel.send("betul", {
       files: [
         "https://cdn.discordapp.com/attachments/454699750336364554/753616779569528842/images_-_2020-09-10T220339.844.jpeg"
       ]
-    
     });
-  if(message.content.startsWith('+ann')) {
+  if (message.content.startsWith("+ann")) {
     let channel = message.mentions.channels.first();
     let args;
-    let array = args.slice(1).join(' ')
+    let array = args.slice(1).join(" ");
 
     channel.send(array);
-}
-    
+  }
 });
 
-
 bot.on("message", message => {
-  if (message.content.startsWith('j!announce')) {
-    let before = message.content.slice('j!announce'.length); //removes the first part
-    let after = before.split(',.'); //[title, description, link, image]
+  if (message.content.startsWith("j!announce")) {
+    let before = message.content.slice("j!announce".length); //removes the first part
+    let after = before.split(",."); //[title, description, link, image]
 
     let embed = new Discord.MessageEmbed()
-      .setAuthor('Japanesme Announcement')
+      .setAuthor("Japanesme Announcement")
       .setDescription(after[0])
       .setImage(after[1] || null)
- //     .setThumbnail(message.guild.iconURL({  dynamic: true  }))
+      //     .setThumbnail(message.guild.iconURL({  dynamic: true  }))
       .setColor(0x0099ff)
       .setFooter("Japanisme Announcement")
       .setTimestamp();
     message.channel.send({ embed });
   }
 });
-
 
 // bot.on('message', async(message) => {
 //   if(message.author.id === '673362753489993749') {
