@@ -125,26 +125,25 @@ bot.on("message", async message => {
 // });
 
 //MESSAGE DELETE
-bot.on("messageDelete", async message => {
-  const CHANNEL = "📌・delete-log";
-  if (message.channel.type == "text") {
-    var logger = message.guild.channels.cache.find(
-      channel => channel.name === CHANNEL
-    );
-    if (logger) {
-      const embed = new Discord.MessageEmbed()
-        .setColor("#0099ff")
-        .setAuthor(message.author.tag, message.author.displayAvatarURL())
-        .setDescription(
-          `**Message Send by ${message.author} in Channel ${message.channel} Has been Deleted**\n❱ ${message.content}`
-        )
-        .setTimestamp()
-        .setFooter("log", message.guild.iconURL);
-      logger.send({ embed });
-    }
-  }
-});
-
+//bot.on("messageDelete", async message => {
+//  const CHANNEL = "📌・delete-log";
+//  if (message.channel.type == "text") {
+//    var logger = message.guild.channels.cache.find(
+ //     channel => channel.name === CHANNEL
+ //   );
+ //   if (logger) {
+//      const embed = new Discord.MessageEmbed()
+ //       .setColor("#0099ff")
+ //       .setAuthor(message.author.tag, message.author.displayAvatarURL())
+ //       .setDescription(
+ //         `**Message Send by ${message.author} in Channel ${message.channel} Has been Deleted**\n❱ ${message.content}`
+//        )
+ //       .setTimestamp()
+  //      .setFooter("log", message.guild.iconURL);
+ //     logger.send({ embed });
+ // }
+//  }
+//});
 bot.on("messageUpdate", (oldMessage, newMessage) => {
   if (oldMessage.author.bot) return;
   if (oldMessage.content == newMessage.content) return;
