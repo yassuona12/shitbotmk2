@@ -56,7 +56,7 @@ bot.on("ready", async message => {
   );
 
   bot.user.setStatus("Online");
-  bot.user.setActivity(`${bot.users.cache.size} Members  | a!report`);
+  bot.user.setActivity(`a!report`);
 
   try {
     let link = await bot.generateInvite(["ADMINISTRATOR"]);
@@ -126,7 +126,7 @@ bot.on("message", async message => {
 
 //MESSAGE DELETE
 bot.on("messageDelete", async message => {
-  const CHANNEL = "📌・delete-logs";
+  const CHANNEL = "📌・delete-log";
   if (message.channel.type == "text") {
     var logger = message.guild.channels.cache.find(
       channel => channel.name === CHANNEL
@@ -149,7 +149,7 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
   if (oldMessage.author.bot) return;
   if (oldMessage.content == newMessage.content) return;
   let logchannel = oldMessage.guild.channels.cache.find(
-    c => c.name === "⌘・bots◟log"
+    c => c.name === "📌・message-logs"
   );
   if (!logchannel) return;
   const embed = new Discord.MessageEmbed()
