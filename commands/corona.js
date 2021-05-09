@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
   const argv = require('yargs-parser')(args)
   const url = 'https://covid19.mathdro.id/api'
   const embed = new Discord.MessageEmbed()
-      .setFooter("Japanisme" , message.guild.iconURL)
+      .setFooter("Betty" , message.guild.iconURL)
       .setTimestamp()
   const ifError = false
   let errorMsg = ''

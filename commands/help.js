@@ -4,7 +4,7 @@ module.exports.run = async(bot, message, args) => {
 
 let embed = new Discord.MessageEmbed()
 .setAuthor("Bitchin'Betty Bot Commands")
-.setDescription('Hai, Saya adalah Official Bot Ini Warkop. Semoga saya dapat membantu kalian semua. Jika ada command yanh tidak merespon bisa hubungi staff yang online. \nBerikut list Command yang saya miliki:')
+.setDescription('Hai, Saya adalah Official Bot Ini ???. Semoga saya dapat membantu kalian semua. Jika ada command yanh tidak merespon bisa hubungi staff yang online. \nBerikut list Command yang saya miliki:')
 .setColor('#0099ff')
 .addField("❱ Moderator Command", `**\`Kick,\`  \`Ban,\`  \`Mute,\`  \`Clear,\`  \`Unban,\`  \`Addrole,\`  \`Delrole\`**`)
 .addField("❱ General Command",`**\`Help,\`  \`Ping,\`   \`Userinfo,\`  \`Avatar,\`  \`Say,\`  \`Serverinfo,\`  \`Report\`**`)

@@ -17,7 +17,7 @@ module.exports.run = async(bot, message, args) => {
   .setFooter("cepu moment", message.guild.iconURL);
 
   //return message.channel.send(reportEmbed); //send msg in current channel
-  let reportsChannel = message.guild.channels.cache.find(ch => ch.name === "cepu") //TODO: set reports channel
+  let reportsChannel = message.guild.channels.cache.find(ch => ch.name === "🤰・Report") //TODO: set reports channel
   if(!reportsChannel) return message.channel.send("Couldn't find reports channel.");
 
   message.delete().catch(O_o=>{}); //delete previous message (input command)

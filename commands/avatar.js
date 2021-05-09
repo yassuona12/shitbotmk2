@@ -8,7 +8,7 @@ exports.run = (client, message, args) => {
         .setTitle(`Avatar for ${mentionedUser.tag} :`)
         .setImage(`${mentionedUser.displayAvatarURL({dynamic: true, size: 4096})}`)
         .setTimestamp()
-        .setFooter(`Japanisme`, message.guild.iconURL);
+        .setFooter(`Betty`, message.guild.iconURL);
         message.channel.send(embed); 
         message.delete();
 }

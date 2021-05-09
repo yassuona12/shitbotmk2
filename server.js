@@ -56,7 +56,7 @@ bot.on("ready", async message => {
   );
 
   bot.user.setStatus("Online");
-  bot.user.setActivity(`${bot.users.cache.size} Members  | j!help`);
+  bot.user.setActivity(`${bot.users.cache.size} Members  | a!report`);
 
   try {
     let link = await bot.generateInvite(["ADMINISTRATOR"]);
@@ -78,7 +78,7 @@ bot.on("message", async message => {
   const prefixMention = new RegExp(`^<@!?${bot.user.id}>`);
 
   const embed = new Discord.MessageEmbed()
-    .setColor("PURPLE")
+    .setColor("PINK")
     .setDescription(`**Hai, prefix ku \`${prefix}\`**`);
   if (message.content.match(prefixMention)) return message.channel.send(embed);
 
@@ -170,52 +170,50 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
 });
 
 //WELCOMER & GOODBYE
-bot.on("guildMemberAdd", async member => {
-  let chx = db.get(`welchannel_${member.guild.id}`); //defining var
+//bot.on("guildMemberAdd", async member => {
+ // let chx = db.get(`welchannel_${member.guild.id}`); //defining var
 
-  if (chx === null) {
+ // if (chx === null) {
     //check if var have value or not
-    return;
-  }
+ //   return;
+ // }
 
-  let embed = new Discord.MessageEmbed()
-    .setColor(0x0099ff)
-    .setAuthor(
-      `Japanisme Welcome Message`,
-      member.guild.iconURL({ dynamic: true })
-    )
-    .setTitle(`Selamat datang diserver ${member.guild.name}`)
-    .setDescription(
-      `**Hai <@${member.id}>\nSelamat datang diserver __[Japanisme](https://discord.gg/BxTcJSS)__. Sebelum itu, Silahkan lihat - lihat channel di kategori \n[──• DASBOARD •──]\n Jika butuh bantuan, silahkan mention staff yang sedang online. Terimakasih**`
-    )
-    .setThumbnail(member.user.avatarURL({ dynamic: true, size: 512 }))
-    .setImage(
-      "https://cdn.discordapp.com/attachments/468791184236740621/756570948047601934/tenor.gif"
-    )
-    .setFooter(
-      `Selamat Datang ${member.user.tag}, kamu member ke ${
-        member.guild.members.cache.filter(member => !member.user.bot).size
-      }`
-    );
-  const channel = member.guild.channels.cache.get(chx);
-  channel.send(embed);
-});
+ // let embed = new Discord.MessageEmbed()
+//    .setColor(0x0099ff)
+//    .setAuthor(
+//      `Japanisme Welcome Message`,
+//      member.guild.iconURL({ dynamic: true })
+//    )    .setTitle(`Selamat datang diserver ${member.guild.name}`)
+//    .setDescription(
+//      `**Hai <@${member.id}>\nSelamat datang diserver __[Japanisme](https://discord.gg/BxTcJSS)__. Sebelum itu, Silahkan lihat - lihat channel di kategori \n[──• DASBOARD •──]\n Jika butuh bantuan, silahkan mention staff yang sedang online. Terimakasih**`
+//    )
+//    .setThumbnail(member.user.avatarURL({ dynamic: true, size: 512 }))
+//    .setImage(
+//      "https://cdn.discordapp.com/attachments/468791184236740621/756570948047601934/tenor.gif"
+//    )
+//    .setFooter(
+//      `Selamat Datang ${member.user.tag}, kamu member ke ${
+//        member.guild.members.cache.filter(member => !member.user.bot).size
+//      }`
+//    );
+//  const channel = member.guild.channels.cache.get(chx);
+//  channel.send(embed);
+//});
 
-bot.on("guildMemberAdd", async member => {
-  let memberCount = member.guild.members.cache.filter(
-    member => !member.user.bot
-  ).size;
-  let japscount = member.guild.channels.cache.get("752409981730422915");
-  await japscount.setName(`Users count : ` + memberCount);
-});
+//bot.on("guildMemberAdd", async member => {
+ // let memberCount = member.guild.members.cache.filter(
+//    member => !member.user.bot
+//  ).size;
+//  let japscount = member.guild.channels.cache.get("752409981730422915");
+//  await japscount.setName(`Users count : ` + memberCount);
+//});
 
-bot.on("guildMemberRemove", async member => {
-  let memberCount = member.guild.members.cache.filter(
-    member => !member.user.bot
-  ).size;
-  let japscount = member.guild.channels.cache.get("752409981730422915");
-  await japscount.setName(`Users count : ` + memberCount);
-});
+//bot.on("guildMemberRemove", async member => {/  let memberCount = member.guild.members.cache.filter(
+ //   member => !member.user.bot
+ // ).size;
+  //let japscount = member.guild.channels.cache.get("752409981730422915");
+ // await japscount.setName(`Users count : ` + memberCount);
+//});
 //-------------------------//dev only\\----------------------\\
 bot.on("message", async message => {
   if (message.content.startsWith("raven ganteng"))

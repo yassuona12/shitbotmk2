@@ -11,7 +11,7 @@ exports.run = async (client, message, args, tools) => {
     .setTitle(`OwO, ${message.author.username} hugged ${message.mentions.users.first().username}`)
     .setImage(body.url)
     .setTimestamp()
-    .setFooter(`japanisme`, message.guild.iconURL);
+    .setFooter(`Betty`, message.guild.iconURL);
     message.channel.send({embed})
 };
 
