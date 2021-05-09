@@ -126,7 +126,7 @@ bot.on("message", async message => {
 
 //MESSAGE DELETE
 bot.on("messageDelete", async message => {
-  const CHANNEL = "⌘・bots◟log";
+  const CHANNEL = "📌・delete-logs";
   if (message.channel.type == "text") {
     var logger = message.guild.channels.cache.find(
       channel => channel.name === CHANNEL
@@ -233,22 +233,6 @@ bot.on("message", async message => {
   }
 });
 
-bot.on("message", message => {
-  if (message.content.startsWith("j!announce")) {
-    let before = message.content.slice("j!announce".length); //removes the first part
-    let after = before.split(",."); //[title, description, link, image]
-
-    let embed = new Discord.MessageEmbed()
-      .setAuthor("Japanesme Announcement")
-      .setDescription(after[0])
-      .setImage(after[1] || null)
-      //     .setThumbnail(message.guild.iconURL({  dynamic: true  }))
-      .setColor(0x0099ff)
-      .setFooter("Japanisme Announcement")
-      .setTimestamp();
-    message.channel.send({ embed });
-  }
-});
 
 // bot.on('message', async(message) => {
 //   if(message.author.id === '673362753489993749') {
